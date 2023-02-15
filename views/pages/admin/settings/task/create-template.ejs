@@ -1,0 +1,159 @@
+<div class="page-wrapper">
+
+  <div class="content container-fluid">
+
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">Create Task Template</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<%- urls.admin.dashboard %>">Dashboard</a></li>
+            <li class="breadcrumb-item">Settings</li>
+            <li class="breadcrumb-item active">Create Task Template</li>
+          </ul>
+        </div>
+        <div class="col-auto float-end ms-auto">
+          <a href="javascript:void(0)" class="btn add-btn save_button" style="margin-left:5px">
+            <i class="fa fa-save"></i> Save Template
+          </a>
+          <a href="javascript:void(0)" class="btn add-btn preview_button">
+            <i class="fa fa-eye"></i> Preview
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <div class="card sticky">
+          <div class="card-header">
+            <h4 class="card-title mb-0">General</h4>
+          </div>
+          <div class="card-body">
+            <div class="form-group">
+              <label>Template Name</label>
+              <input type="text" class="form-control" placeholder="Name" form="template_name">
+            </div>
+            <div class="form-group">
+              <label>Topic</label>
+              <select class="form-control topic_select">
+                <option value="General">General</option>
+                <option value="Inspection">Inspection</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Type</label>
+              <select class="form-control type_select" topic="General">
+                <option value="Install">Install</option>
+                <option value="Relocate">Relocate</option>
+                <option value="Remove">Remove</option>
+                <option value="Transfer">Transfer</option>
+                <option value="Mobilization">Mobilization</option>
+                <option value="Logistic">Logistic</option>
+              </select>
+              <select class="form-control type_select off" topic="Inspection">
+                <option value="Closeout Package">Closeout Package</option>
+                <option value="Punch List">Punch List</option>
+              </select>
+            </div>
+          </div>
+          <div class="card-header">
+            <h4 class="card-title mb-0">Sub Task</h4>
+          </div>
+          <div class="card-body">
+            <div class="subtasks">
+              <div class="item"><name>Subtask <span>1</span></name><i class="fa fa-trash-alt"></i></div>
+              <div class="item"><name>Subtask <span>2</span></name><i class="fa fa-trash-alt"></i></div>
+            </div>
+            <button type="button" class="btn-sm btn-primary new_subtask_button"><i class="fa fa-plus"></i> New Subtask</button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="card sticky">
+          <div class="card-header sort_type">
+            <button type="button" class="btn-sm btn-primary active">All</button>
+            <button type="button" class="btn-sm btn-primary">Text</button>
+            <button type="button" class="btn-sm btn-primary">Numberic</button>
+            <button type="button" class="btn-sm btn-primary">List</button>
+            <button type="button" class="btn-sm btn-primary">Date/Time</button>
+            <button type="button" class="btn-sm btn-primary">Image</button>
+          </div>
+          <div class="card-body">
+            <div class="field_list">
+              <div class="item" type="text" draggable="true">
+                <i class="fa fa-text"></i>
+                <name>Text</name>
+              </div>
+              <div class="item" type="select" draggable="true">
+                <i class="fa fa-list-alt"></i>
+                <name>Combo Box</name>
+              </div>
+              <div class="item" type="checkbox" draggable="true">
+                <i class="fa fa-check-square"></i>
+                <name>Checkbox</name>
+              </div>
+              <div class="item" type="radio" draggable="true">
+                <i class="fad fa-circle"></i>
+                <name>Radio</name>
+              </div>
+              <div class="item" type="textarea" draggable="true">
+                <i class="fas fa-text-size"></i>
+                <name>Textarea</name>
+              </div>
+              <div class="item" type="file" draggable="true">
+                <i class="fa fa-upload"></i>
+                <name>File Upload</name>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="template_name">
+          <h2><span>Name</span></h2>
+        </div>
+        <div class="subtask_content_wrapper">
+          <div class="card subtask_content" draggable="true">
+            <div class="card-header">
+              <h4 class="card-title mb-0">Subtask <span>1</span></h4>
+              <i class="fa fa-chevron-down"></i>
+            </div>
+            <div class="card-body template">
+            </div>
+          </div>
+          <div class="card subtask_content" draggable="true">
+            <div class="card-header">
+              <h4 class="card-title mb-0">Subtask <span>2</span></h4>
+              <i class="fa fa-chevron-down"></i>
+            </div>
+            <div class="card-body template">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="preview" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Preview Template</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/moment.min.js"></script>
+<script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/assets/js/jquery.dataTables.min.js"></script>
+<script src="/assets/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/js/ckeditor.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>
+

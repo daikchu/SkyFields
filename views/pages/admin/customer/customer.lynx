@@ -1,0 +1,27 @@
+const urls = require(root + "/views/pages/routes.lynx").urls;
+
+module.exports = function(app) {
+  app.route(urls.admin.customer + "/:id")
+  .get((request, response) => {
+    const user = request.session.user;
+    if(user) {
+      if(user.role == "admin") {
+        response.render("pages/admin/customer/customer", { 
+          urls: urls, 
+          menu: {
+            parent: "customers"
+          }, 
+          title: "Customer Profile", 
+          layout: "./layouts/admin/master-page",
+          script: ""
+        });
+      }
+    }
+    else {
+      response.status(404).send(`<!DOCTYPE html><pre>Cannot GET ${urls.admin.customer}</pre>`);
+    }
+  })
+  .post((request, response) => {
+    
+  });
+}

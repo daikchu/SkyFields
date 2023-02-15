@@ -1,0 +1,650 @@
+<div class="page-wrapper">
+
+  <div class="content container-fluid">
+    <div class="page-header">
+      <div class="row">
+        <div class="col-sm-12">
+          <h3 class="page-title">Task Detail</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<%- urls.admin.dashboard %>">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="<%- urls.admin.job %>/1">Job ID</a></li>
+            <li class="breadcrumb-item active">Task ID</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="file-wrap">
+          <div class="file-sidebar">
+            <div class="file-header justify-content-center">
+              <span>Tasks</span>
+              <a href="javascript:void(0);" class="file-side-close"><i class="fa fa-times"></i></a>
+            </div>
+            <form class="file-search">
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <i class="fa fa-search"></i>
+                </div>
+                <input type="text" class="form-control rounded-pill" placeholder="Search">
+              </div>
+            </form>
+            <div class="file-pro-list">
+              <div class="file-scroll">
+                <ul class="file-menu">
+                  <li class="active">
+                    <a href="#">All Tasks</a>
+                  </li>
+                  <li>
+                    <a href="#">Office Management</a>
+                  </li>
+                  <li>
+                    <a href="#">Video Calling App</a>
+                  </li>
+                  <li>
+                    <a href="#">Hospital Administration</a>
+                  </li>
+                  <li>
+                    <a href="#">Virtual Host</a>
+                  </li>
+                </ul>
+                <div class="show-more">
+                  <a href="#">Show More</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="file-cont-wrap">
+            <div class="file-cont-inner hide_detail">
+              <div class="file-cont-header">
+                <div class="file-options">
+                  <a href="javascript:void(0)" id="file_sidebar_toggle" class="file-sidebar-toggle">
+                    <i class="fa fa-bars"></i>
+                  </a>
+                </div>
+                <div class="task_gallery">
+                  <span>Gallery</span>
+                  <div>
+                    <label><input type="checkbox" name="classify" value="Classify" checked /> Classify</label>
+                    <label><input type="checkbox" name="approved" value="Approved" checked /> Approved</label>
+                    <label><input type="checkbox" name="rejected" value="Rejected" checked /> Rejected</label>
+                  </div>
+                </div>
+                <div class="file-options">
+                  <button type="button" class="btn btn-primary view_mode">Image Only</button>
+                </div>
+              </div>
+              <div class="file-content">
+                <div class="file-body">
+                  <div class="file-scroll">
+                    <div class="file-content-inner">
+                      <div class="row row-sm">
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 approved" data-status="approved">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery01.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery01.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1200 x 840</span></div>
+                              <div col><b>Lat/Long:</b><span>32.249294, 89.203929</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 8:34 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 classify" data-status="classify">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery02.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery02.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1300 x 960</span></div>
+                              <div col><b>Lat/Long:</b><span>35.567890, 92.426898</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 9:40 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 rejected" data-status="rejected">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery03.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery03.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1200 x 840</span></div>
+                              <div col><b>Lat/Long:</b><span>32.249294, 89.203929</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 8:34 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 approved" data-status="approved">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery04.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery04.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1300 x 960</span></div>
+                              <div col><b>Lat/Long:</b><span>35.567890, 92.426898</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 9:40 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 classify" data-status="classify">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery05.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery05.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1200 x 840</span></div>
+                              <div col><b>Lat/Long:</b><span>32.249294, 89.203929</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 8:34 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 rejected" data-status="rejected">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery06.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery06.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1300 x 960</span></div>
+                              <div col><b>Lat/Long:</b><span>35.567890, 92.426898</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 9:40 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 approved" data-status="approved">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery07.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery07.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1200 x 840</span></div>
+                              <div col><b>Lat/Long:</b><span>32.249294, 89.203929</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 8:34 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 classify" data-status="classify">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery08.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery08.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1300 x 960</span></div>
+                              <div col><b>Lat/Long:</b><span>35.567890, 92.426898</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 9:40 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 rejected" data-status="rejected">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery09.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery09.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1200 x 840</span></div>
+                              <div col><b>Lat/Long:</b><span>32.249294, 89.203929</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 8:34 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 approved" data-status="approved">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery10.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery10.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1300 x 960</span></div>
+                              <div col><b>Lat/Long:</b><span>35.567890, 92.426898</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 9:40 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 classify" data-status="classify">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery11.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery11.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1200 x 840</span></div>
+                              <div col><b>Lat/Long:</b><span>32.249294, 89.203929</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 8:34 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 rejected" data-status="rejected">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery12.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery12.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1300 x 960</span></div>
+                              <div col><b>Lat/Long:</b><span>35.567890, 92.426898</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 9:40 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 approved" data-status="approved">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery13.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery13.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1200 x 840</span></div>
+                              <div col><b>Lat/Long:</b><span>32.249294, 89.203929</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 8:34 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 classify" data-status="classify">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery14.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery14.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1300 x 960</span></div>
+                              <div col><b>Lat/Long:</b><span>35.567890, 92.426898</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 9:40 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 rejected" data-status="rejected">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery15.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery15.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1200 x 840</span></div>
+                              <div col><b>Lat/Long:</b><span>32.249294, 89.203929</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 8:34 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                        <div class="col-6 col-sm-4 col-md-3 col-lg-4 col-xl-3 approved" data-status="approved">
+                          <div class="card card-file">
+                            <div class="dropdown-file">
+                              <a href="" class="dropdown-link" data-bs-toggle="dropdown"><i
+                                  class="fa fa-ellipsis-v"></i></a>
+                              <div class="dropdown-menu dropdown-menu-right">
+                                <a href="#" class="dropdown-item"><i class="fa fa-search"></i> View Details</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-comments"></i> Comments ( 5 )</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-check-circle"></i> Approve</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-times-circle"></i> Reject</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-question-circle"></i> Not Classified</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-download"></i> Download</a>
+                                <a href="#" class="dropdown-item"><i class="fa fa-trash"></i> Delete</a>
+                              </div>
+                            </div>
+                            <div class="card-file-thumb" style="background-image:url('/assets/images/gallery/gallery16.jpg?w=200&h=200&mode=max')" data-image="/assets/images/gallery/gallery16.jpg">
+                            </div>
+                            <div class="card-body image_info">
+                              <div><b>Image type:</b><span>JPG</span></div>
+                              <div><b>Resolution:</b><span>1300 x 960</span></div>
+                              <div col><b>Lat/Long:</b><span>35.567890, 92.426898</span></div>
+                              <div col><b>Address:</b><span>3813 Plainview Rd, Nashville, TN 37213, USA</span></div>
+                              <div col><b>Captured:</b><span>02/14/2022 Monday 9:40 AM CST</span></div>
+                              <div col><b>Camera Make/Model:</b><span>Apple iPhone 14</span></div>
+                              <div><b>Compas:</b><span>150º SE</span></div>
+                              <div><b>Elevation:</b><span>24824'</span></div>
+                            </div>
+                            <div class="card-footer">
+                            </div>
+                            <div class="image_status"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="modal_slider off">
+  <div class="slider">
+    <i class="fa fa-times-circle"></i>
+    <div class="image_gallery" data-total="" data-index="">
+      <div class="current" data-current=""></div>
+      <div class="previous" data-index=""><i class="fa fa-chevron-left"></i></div>
+      <div class="image"></div>
+      <div class="next" data-index=""><i class="fa fa-chevron-right"></i></div>
+      <div class="action">
+        <button type="button" class="btn btn-secondary">Not Classified</button>
+        <button type="button" class="btn btn-success">Approve</button>
+        <button type="button" class="btn btn-danger">Reject</button>
+      </div>
+    </div>
+    <div class="info">
+      <ul class="nav nav-tabs nav-tabs-solid nav-justified">
+        <li class="nav-item"><a class="nav-link active" href="#modal-tab1" data-bs-toggle="tab">Info</a></li>
+        <li class="nav-item"><a class="nav-link" href="#modal-tab2" data-bs-toggle="tab">Comments</a></li>
+      </ul>
+      <div class="tab-content">
+        <div class="tab-pane show active" id="modal-tab1">
+          <div row>
+            <div class="image_info">
+              <div><b>Image type:</b><span></span></div>
+              <div><b>Resolution:</b><span></span></div>
+              <div col><b>Lat/Long:</b><span></span></div>
+              <div col><b>Address:</b><span></span></div>
+              <div col><b>Captured:</b><span></span></div>
+              <div col><b>Camera Make/Model:</b><span></span></div>
+              <div><b>Compas:</b><span></span></div>
+              <div><b>Elevation:</b><span></span></div>
+            </div>
+            <div class="image_status"></div>
+          </div>
+        </div>
+        <div class="tab-pane" id="modal-tab2">
+          No comments
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

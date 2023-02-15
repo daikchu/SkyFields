@@ -1,0 +1,27 @@
+const urls = require(root + "/views/pages/routes.lynx").urls;
+
+module.exports = function(app) {
+  app.route(urls.admin.employees)
+  .get((request, response) => {
+    const user = request.session.user;
+    if(user) {
+      if(user.role == "admin") {
+        response.render("pages/admin/employees/employees", { 
+          urls: urls, 
+          menu: {
+            parent: "employees"
+          }, 
+          title: "Employees", 
+          layout: "./layouts/admin/master-page",
+          script: ""
+        });
+      }
+    }
+    else {
+      response.status(404).send(`<!DOCTYPE html><pre>Cannot GET ${urls.admin.employees}</pre>`);
+    }
+  })
+  .post((request, response) => {
+    
+  });
+}

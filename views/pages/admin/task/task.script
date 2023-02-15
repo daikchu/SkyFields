@@ -1,0 +1,94 @@
+$(document).ready(function () {
+  $(".view_mode").click(function () {
+    $(this).toggleClass("btn-primary btn-info");
+
+    if($(".file-cont-inner").hasClass("hide_detail")) {
+      $(this).text("Show Info");
+      $(".file-cont-inner").removeClass("hide_detail");
+    }
+    else {
+      $(this).text("Image Only");
+      $(".file-cont-inner").addClass("hide_detail");
+    }
+      
+  });
+
+  $("input[type='checkbox']").click(function () {
+    CheckGallery();
+  });
+
+  $(".card-file-thumb, .card .dropdown-menu > a:first-child").click(function () {
+    const index = $(this).closest(".col-6").index();
+    ViewDetail(index);
+  });
+
+  $(".modal_slider .slider > i").click(function () {
+    $(".modal_slider .slider").animate({
+      opacity: 0
+    }, 400, function () {
+      $(".modal_slider").animate({
+        opacity: 0
+      }, 400, function () {
+        $(".modal_slider, .modal_slider .slider").removeAttr("style");
+        $(".modal_slider").addClass("off");
+      });
+    });
+    
+  });
+
+  $(".modal_slider .image_gallery .previous, .modal_slider .image_gallery .next").click(function () {
+    const index = parseInt($(this).attr("data-index"));
+    const total = parseInt($(".modal_slider .image_gallery").attr("data-total"));
+    if(index >= 0 && index < total) {
+      ViewDetail(index);
+    }
+  });
+
+  CheckGallery();
+});
+
+function CheckGallery() {
+  $("input[name='classify']").is(":checked") ? $(".file-content .classify").removeClass("off") : $(".file-content .classify").addClass("off");
+  $("input[name='approved']").is(":checked") ? $(".file-content .approved").removeClass("off") : $(".file-content .approved").addClass("off");
+  $("input[name='rejected']").is(":checked") ? $(".file-content .rejected").removeClass("off") : $(".file-content .rejected").addClass("off");
+}
+
+function ViewDetail(index) {
+  const total = $(".file-content-inner .row > .col-6").length;
+  const image = $(`.file-content-inner .row > .col-6:eq(${index}) .card-file-thumb`).attr("data-image");
+  const image_status = $(`.file-content-inner .row > .col-6:eq(${index})`).attr("data-status");
+  const card_body = $(`.file-content-inner .row > .col-6:eq(${index}) .image_info`);
+  const image_type = $(card_body).find("div:first-child > span").text();
+  const resolution = $(card_body).find("div:nth-child(2) > span").text();
+  const lat_long = $(card_body).find("div:nth-child(3) > span").text();
+  const address = $(card_body).find("div:nth-child(4) > span").text();
+  const captured = $(card_body).find("div:nth-child(5) > span").text();
+  const camera = $(card_body).find("div:nth-child(6) > span").text();
+  const compas = $(card_body).find("div:nth-child(7) > span").text();
+  const elevation = $(card_body).find("div:nth-child(8) > span").text();
+
+  $(".modal_slider .image_gallery").attr("data-total", total);
+  $(".modal_slider .image_gallery").attr("data-index", index);
+  $(".modal_slider .image_gallery .current").attr("data-current", (parseInt(index) + 1) + "/" + total);
+  $(".modal_slider .image_gallery .previous").attr("data-index", parseInt(index) - 1);
+  $(".modal_slider .image_gallery .next").attr("data-index", parseInt(index) + 1);
+  $(".modal_slider .image_gallery > .image").attr("style", "background-image:url('" + image + "')");
+  $(".modal_slider .info").removeClass("classify approved rejected");
+  $(".modal_slider .info").addClass(image_status);
+  $(".modal_slider .image_info > div:nth-child(1) > span").text(image_type);
+  $(".modal_slider .image_info > div:nth-child(2) > span").text(resolution);
+  $(".modal_slider .image_info > div:nth-child(3) > span").text(lat_long);
+  $(".modal_slider .image_info > div:nth-child(4) > span").text(address);
+  $(".modal_slider .image_info > div:nth-child(5) > span").text(captured);
+  $(".modal_slider .image_info > div:nth-child(6) > span").text(camera);
+  $(".modal_slider .image_info > div:nth-child(7) > span").text(compas);
+  $(".modal_slider .image_info > div:nth-child(8) > span").text(elevation);
+  $(".modal_slider").removeClass("off");
+  $(".modal_slider").animate({
+    opacity: 1
+  }, 400, function () {
+    $(".modal_slider .slider").animate({
+      opacity: 1
+    }, 400);
+  });
+}

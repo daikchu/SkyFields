@@ -1,0 +1,374 @@
+$(document).ready(function () {
+  $(".template").sortable();
+
+  $(`[draggable="true"]`).on("dragstart", function (e) {
+    e.originalEvent.dataTransfer.setData("type", $(e.currentTarget).attr("type"));
+  });
+
+  $(".template").on("dragover", function (e) {
+    e.preventDefault();
+  });
+
+  $(".template").on("drop", function (e) {
+    e.preventDefault();
+    const data = e.originalEvent.dataTransfer.getData("type");
+    var html = "";
+
+    switch (data) {
+      case "text": html = DrawText(100); break;
+      case "select": html = DrawSelect(100); break;
+      case "checkbox": html = DrawCheckbox(100); break;
+      case "radio": html = DrawRadio(100); break;
+      case "textarea": html = DrawTextarea(100); break;
+      case "file": html = DrawFile(100); break;
+      default: break;
+    }
+
+    if(html != "") {
+      $(e.currentTarget).append(html);
+      BlockAction();
+      counter++;
+    }
+  });
+
+  $(".milestone .tab_action .add").click(function () {
+    milestone_counter++;
+    $(".milestone .nav").append(`
+      <li class="nav-item">
+        <a class="nav-link" href="#milestone${milestone_counter}" data-bs-toggle="tab" contenteditable="true">Milestone</a>
+      </li>`);
+    
+    $(".milestone .tab-content").append(`
+      <div class="tab-pane" id="milestone${milestone_counter}">
+        Tasks of <span>Milestone</span> 
+      </div>`);
+
+    ReindexMilestone();
+  });
+
+  $(".milestone .tab_action .delete").click(function () {
+    if($(".milestone .nav .nav-item").length > 1) {
+      $(".milestone .nav .nav-item .active").parent().remove();
+      $(".milestone .tab-content .tab-pane.active").remove();
+      ReindexMilestone();
+      $(".milestone .nav .nav-item:first-child a").addClass("active");
+      $(".milestone .tab-content .tab-pane:first-child").addClass("active");
+    }
+  });
+
+  MilestoneAction();
+});
+
+var counter = 0;
+var milestone_counter = 3;
+
+function DrawText(width) {
+  const block = 
+  `<div class="block w${width}" current="w${width}" draggable="true" style="width:calc(${width}% - 10px)" data-index="${counter}">
+    <div class="action">
+      <select>
+        <option value="100%">100%</option>
+        <option value="50%">50%</option>
+        <option value="25%">25%</option>
+        <option value="75%">75%</option>
+      </select>
+      <i class="fa fa-times-circle"></i>
+    </div>
+    <div class="block_content">
+      <div class="form-group">
+        <input type="text" class="field_name" value="Field Name"/>
+        <input type="hidden" class="var_field_name" value="field_name" />
+        <input type="text" class="form-control" placeholder="-- Text Input --" />
+      </div>
+    </div>
+  </div>`;
+  return block;
+}
+
+function DrawSelect(width) {
+  const block = 
+  `<div class="block w${width}" current="w${width}" draggable="true" style="width:calc(${width}% - 10px)" data-index="${counter}">
+    <div class="action">
+      <select>
+        <option value="100%">100%</option>
+        <option value="50%">50%</option>
+        <option value="25%">25%</option>
+        <option value="75%">75%</option>
+      </select>
+      <i class="fa fa-times-circle"></i>
+    </div>
+    <div class="block_content">
+      <div class="form-group">
+        <input type="text" class="field_name" value="Field Name" />
+        <input type="hidden" class="var_field_name" value="field_name" />
+        <select class="form-control form-select">
+          <option value="Option 1">Option 1</option>
+          <option value="Option 2">Option 2</option>
+        </select>
+      </div>
+      <ul class="select_option select">
+        <li><input type="text" value="Option 1" /><i class="fa fa-trash"></i></li>
+        <li><input type="text" value="Option 2" /><i class="fa fa-trash"></i></li>
+      </ul>
+      <div class="add_option select">
+        <i class="fa fa-plus-circle"></i>
+      </div>
+    </div>
+  </div>`;
+  return block;
+}
+
+function DrawCheckbox(width) {
+  const block = 
+  `<div class="block w${width}" current="w${width}" draggable="true" style="width:calc(${width}% - 10px)" data-index="${counter}">
+    <div class="action">
+      <select>
+        <option value="100%">100%</option>
+        <option value="50%">50%</option>
+        <option value="25%">25%</option>
+        <option value="75%">75%</option>
+      </select>
+      <i class="fa fa-times-circle"></i>
+    </div>
+    <div class="block_content">
+      <div class="form-group">
+        <input type="text" class="field_name" value="Field Name" />
+        <input type="hidden" class="var_field_name" value="field_name" />
+        <div class="checkbox_inline">
+          <div class="checkbox">
+            <label><input type="checkbox" name="checkbox" value="Option 1"> <span>Option 1</span></label>
+          </div>
+          <div class="checkbox">
+            <label><input type="checkbox" name="checkbox" value="Option 2"> <span>Option 2</span></label>
+          </div>
+        </div>
+      </div>
+      <ul class="select_option checkbox">
+        <li><input type="text" value="Option 1" /><i class="fa fa-trash"></i></li>
+        <li><input type="text" value="Option 2" /><i class="fa fa-trash"></i></li>
+      </ul>
+      <div class="add_option checkbox">
+        <i class="fa fa-plus-circle"></i>
+      </div>
+    </div>
+  </div>`;
+  return block;
+}
+
+function DrawRadio(width) {
+  const block = 
+  `<div class="block w${width}" current="w${width}" draggable="true" style="width:calc(${width}% - 10px)" data-index="${counter}">
+    <div class="action">
+      <select>
+        <option value="100%">100%</option>
+        <option value="50%">50%</option>
+        <option value="25%">25%</option>
+        <option value="75%">75%</option>
+      </select>
+      <i class="fa fa-times-circle"></i>
+    </div>
+    <div class="block_content">
+      <div class="form-group">
+        <input type="text" class="field_name" value="Field Name" />
+        <input type="hidden" class="var_field_name" value="field_name" />
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="radio_${counter}" value="Option 1" checked="checked">
+          <label class="form-check-label">Option 1</label>
+        </div>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" name="radio_${counter}" value="Option 2">
+          <label class="form-check-label">Option 2</label>
+        </div>
+      </div>
+      <ul class="select_option radio">
+        <li><input type="text" value="Option 1" /><i class="fa fa-trash"></i></li>
+        <li><input type="text" value="Option 2" /><i class="fa fa-trash"></i></li>
+      </ul>
+      <div class="add_option radio">
+        <i class="fa fa-plus-circle"></i>
+      </div>
+    </div>
+  </div>`;
+  return block;
+}
+
+function DrawTextarea(width) {
+  const block = 
+  `<div class="block w${width}" current="w${width}" draggable="true" style="width:calc(${width}% - 10px)" data-index="${counter}">
+    <div class="action">
+      <select>
+        <option value="100%">100%</option>
+        <option value="50%">50%</option>
+        <option value="25%">25%</option>
+        <option value="75%">75%</option>
+      </select>
+      <i class="fa fa-times-circle"></i>
+    </div>
+    <div class="block_content">
+      <div class="form-group">
+        <input type="text" class="field_name" value="Field Name"/>
+        <input type="hidden" class="var_field_name" value="field_name" />
+        <textarea rows="5" cols="5" class="form-control" placeholder="-- Textarea --" style="min-height:44px"></textarea>
+      </div>
+    </div>
+  </div>`;
+  return block;
+}
+
+function DrawFile(width) {
+  const block = 
+  `<div class="block w${width}" current="w${width}" draggable="true" style="width:calc(${width}% - 10px)" data-index="${counter}">
+    <div class="action">
+      <select>
+        <option value="100%">100%</option>
+        <option value="50%">50%</option>
+        <option value="25%">25%</option>
+        <option value="75%">75%</option>
+      </select>
+      <i class="fa fa-times-circle"></i>
+    </div>
+    <div class="block_content">
+      <div class="form-group">
+        <input type="text" class="field_name" value="Field Name"/>
+        <input type="hidden" class="var_field_name" value="field_name" />
+        <input class="form-control" type="file" multiple>
+      </div>
+    </div>
+  </div>`;
+  return block;
+}
+
+function BlockAction() {
+  $(".block .action > select").unbind("change");
+  $(".block .action > select").on("change", function () {
+    const block = $(this).closest(".block");
+    $(block).attr("style", "width:calc(" + $(this).val() + " - 10px)");
+    const new_current = "w" + $(this).val().replace("%", "");
+    $(block).toggleClass($(block).attr("current") + " " + new_current);
+    $(block).attr("current", new_current)
+  });
+
+  $(".block .action > i").unbind("click");
+  $(".block .action > i").click(function () {
+    $(this).closest(".block").remove();
+  });
+
+  $(".block .field_name").unbind("keyup");
+  $(".block .field_name").keyup(function () {
+    const index = $(this).parent().index();
+    $(this).next().val($(this).val().toLowerCase().replace(/\ /g, "_"));
+  });
+
+  SelectOptionAction();
+  CheckboxOptionAction();
+  RadioOptionAction();
+  RadioAction();
+
+  $(".block .add_option.select > i").unbind("click");
+  $(".block .add_option.select > i").click(function () {
+    $(this).closest(".block").find(".select_option").append(`<li><input type="text" value="Option" /><i class="fa fa-trash"></i></li>`);
+    SelectOptionAction();
+
+    $(this).closest(".block").find(".form-select").append(`<option value="Option">Option</option>`);
+  });
+
+  $(".block .add_option.checkbox > i").unbind("click");
+  $(".block .add_option.checkbox > i").click(function () {
+    const index = $(this).closest(".block").attr("data-index");
+    $(this).closest(".block").find(".select_option").append(`<li><input type="text" value="Option" /><i class="fa fa-trash"></i></li>`);
+    CheckboxOptionAction();
+
+    $(this).closest(".block").find(".checkbox_inline").append(
+      `<div class="checkbox">
+        <label><input type="checkbox" name="checkbox" value="Option"> <span>Option</span></label>
+      </div>`);
+  });
+
+  $(".block .add_option.radio > i").unbind("click");
+  $(".block .add_option.radio > i").click(function () {
+    const index = $(this).closest(".block").attr("data-index");
+    $(this).closest(".block").find(".select_option").append(`<li><input type="text" value="Option" /><i class="fa fa-trash"></i></li>`);
+    RadioOptionAction();
+
+    $(this).closest(".block").find(".form-group").append(
+      `<div class="form-check form-check-inline">
+        <input class="form-check-input" type="radio" name="radio_${index}" value="Option">
+        <label class="form-check-label">Option</label>
+      </div>`);
+
+    RadioAction();
+  });
+}
+
+function SelectOptionAction() {
+  $(".block .select_option.select li > i").unbind("click");
+  $(".block .select_option.select li > i").click(function () {
+    const index = $(this).parent().index();
+    $(this).closest(".block").find(`.form-select option:eq(${index})`).remove();
+    $(this).parent().remove();
+  });
+
+  $(".block .select_option.select li > input").unbind("keyup");
+  $(".block .select_option.select li > input").keyup(function () {
+    const index = $(this).parent().index();
+    $(this).closest(".block").find(`.form-select option:eq(${index})`).text($(this).val());
+    $(this).closest(".block").find(`.form-select option:eq(${index})`).val($(this).val());
+  });
+}
+
+function CheckboxOptionAction() {
+  $(".block .select_option.checkbox li > i").unbind("click");
+  $(".block .select_option.checkbox li > i").click(function () {
+    const index = $(this).parent().index();
+    $(this).closest(".block").find(`.form-group .form-check:eq(${index})`).remove();
+    $(this).parent().remove();
+  });
+
+  $(".block .select_option.checkbox li > input").unbind("keyup");
+  $(".block .select_option.checkbox li > input").keyup(function () {
+    const index = $(this).parent().index();
+    $(this).closest(".block").find(`.checkbox_inline .checkbox:eq(${index}) input`).val($(this).val());
+    $(this).closest(".block").find(`.checkbox_inline .checkbox:eq(${index}) span`).text($(this).val());
+  });
+}
+
+function RadioOptionAction() {
+  $(".block .select_option.radio li > i").unbind("click");
+  $(".block .select_option.radio li > i").click(function () {
+    const index = $(this).parent().index();
+    $(this).closest(".block").find(`.form-group .form-check:eq(${index})`).remove();
+    $(this).parent().remove();
+  });
+
+  $(".block .select_option.radio li > input").unbind("keyup");
+  $(".block .select_option.radio li > input").keyup(function () {
+    const index = $(this).parent().index();
+    $(this).closest(".block").find(`.form-group .form-check:eq(${index}) > input`).val($(this).val());
+    $(this).closest(".block").find(`.form-group .form-check:eq(${index}) > label`).text($(this).val());
+  });
+}
+
+function RadioAction() {
+  $(".form-check > .form-check-label").unbind("click");
+  $(".form-check > .form-check-label").click(function () {
+    !$(this).prev().is(":checked") ? $(this).prev().prop("checked", true) : null;
+  });
+}
+
+function ReindexMilestone() {
+  $(".milestone .nav .nav-item").each(function (i, item) {
+    $(`.milestone .nav .nav-item:eq(${i}) a`).attr("href", `#milestone${i+1}`);
+    $(`.milestone .tab-content .tab-pane:eq(${i})`).attr("id", `milestone${i+1}`);
+    $(`.milestone .tab-content .tab-pane:eq(${i}) span`).text($(`.milestone .nav .nav-item:eq(${i}) a`).text());
+  });
+
+  MilestoneAction();
+}
+
+function MilestoneAction() {
+  $(".milestone ul.nav li a").unbind("keyup");
+  $(".milestone ul.nav li a").keyup(function () {
+    const index = $(this).parent().index();
+    $(`.milestone .tab-content .tab-pane:eq(${index}) > span`).text($(this).text());
+  });
+}

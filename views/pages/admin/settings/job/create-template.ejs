@@ -1,0 +1,84 @@
+<div class="page-wrapper">
+
+  <div class="content container-fluid">
+
+    <div class="page-header">
+      <div class="row align-items-center">
+        <div class="col">
+          <h3 class="page-title">Create Job Template</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="<%- urls.admin.dashboard %>">Dashboard</a></li>
+            <li class="breadcrumb-item">Settings</li>
+            <li class="breadcrumb-item active">Create Job Template</li>
+          </ul>
+        </div>
+        <div class="col-auto float-end ms-auto">
+          <a href="javascript:void(0)" class="btn add-btn save_button">
+            <i class="fa fa-save"></i> Save
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-2">
+        <div class="card sticky">
+          <div class="card-header">
+            <h4 class="card-title mb-0">Select Fields</h4>
+          </div>
+          <div class="card-body fields">
+            <div class="col-form-label" type="text" draggable="true">Text Input</div>
+            <div class="col-form-label" type="select" draggable="true">Select</div>
+            <div class="col-form-label" type="checkbox" draggable="true">Checkbox</div>
+            <div class="col-form-label" type="radio" draggable="true">Radio</div>
+            <div class="col-form-label" type="textarea" draggable="true">Textarea</div>
+            <div class="col-form-label" type="file" draggable="true">File Upload</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-10">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">Template Fields</h4>
+          </div>
+          <div class="card-body template" id="sortable">
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title mb-0">Template Milestones</h4>
+          </div>
+          <div class="card-body milestone">
+            <div class="tab_action">
+              <i class="fa fa-plus-circle add"></i>
+              <i class="fa fa-trash delete"></i>
+            </div>
+            <ul class="nav nav-tabs nav-tabs-solid">
+              <li class="nav-item"><a class="nav-link active" href="#milestone1" data-bs-toggle="tab" contenteditable="true">Milestone 1</a></li>
+              <li class="nav-item"><a class="nav-link" href="#milestone2" data-bs-toggle="tab" contenteditable="true">Milestone 2</a></li>
+              <li class="nav-item"><a class="nav-link" href="#milestone3" data-bs-toggle="tab" contenteditable="true">Milestone 3</a></li>
+            </ul>
+            <div class="tab-content">
+              <div class="tab-pane show active" id="milestone1">
+                Tasks of <span>Milestone 1</span>
+              </div>
+              <div class="tab-pane" id="milestone2">
+                Tasks of <span>Milestone 2</span>
+              </div>
+              <div class="tab-pane" id="milestone3">
+                Tasks of <span>Milestone 3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="/assets/js/moment.min.js"></script>
+<script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/assets/js/jquery.dataTables.min.js"></script>
+<script src="/assets/js/dataTables.bootstrap4.min.js"></script>
+<script src="/assets/js/ckeditor.js"></script>
+<script src="/assets/js/jquery-ui.min.js"></script>

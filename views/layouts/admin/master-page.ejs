@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Skyfields - <%- title %></title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+    <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.png">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/line-awesome.min.css">
+    <link rel="stylesheet" href="/css/select2.min.css">
+    <link rel="stylesheet" href="/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="/css/morris.css">
+    <link rel="stylesheet" href="/css/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="/css/bootstrap-tagsinput.css">
+    <link rel="stylesheet" href="/css/ckeditor.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
+    <script src="/js/jquery-3.6.0.min.js"></script>
+    <script src="/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/jquery.slimscroll.min.js"></script>
+    <script src="/js/select2.min.js"></script>
+    <!-- <script src="/socket.io/socket.io.js"></script> -->
+    <script src="/js/script.js"></script>
+    <script type="module" src="/app.js"></script>
+    
+    <!-- <script>
+      var socket = io();
+
+      socket.on("connected", function(message) {
+        $.notification("success", message, 3000);
+      });
+
+      socket.on("message", function(message) {
+        $.notification("success", message, 3000);
+      });
+    </script> -->
+  </head>
+  <body class="">
+    <div class="main-wrapper">    
+      <%- include("header.ejs") %>
+      <%- include("sidebar.ejs") %>
+      <%- body %>
+      <%- include("../../components/footer_script.ejs") %>
+      <%- include("../../components/notification.ejs") %>
+    </div>
+    
+    <script src="/js/app.js"></script>
+    
+    <footer></footer>
+  </body>
+</html>

@@ -1,0 +1,61 @@
+:root {
+  --new: #ff9b44;
+  --on_hold: #f7786e;
+  --precon: #a79a29; 
+  --bom: #3f51b5;
+  --forecast:#009688;
+  --start:#9e9e9e;
+  --in_progress: #ff9800;
+  --completed: #4caf50;
+  --closeout_approval: #03a9f4;
+  --punch_list_approval: #b9df8d;
+  --archived: #00ffff;
+  --cancelled: #bf0606;
+}
+
+a:hover {
+  color: #ff9b44;
+}
+
+.show_tasks {
+  cursor: pointer;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.show_tasks:hover {
+  color: #ff9b44;
+}
+
+tr.view_tasks {
+  height: 0;
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+tr.view_tasks td {
+  vertical-align: baseline;
+}
+
+tr.view_tasks .task-wrapper {
+  padding: 0;
+}
+
+.fadeIn {
+  animation: fadeIn 0.8s;
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+*.opacity-0 {
+  opacity: 0;
+}
+
+*.off {
+  display: none;
+}

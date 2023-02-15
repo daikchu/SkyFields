@@ -1,0 +1,44 @@
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-inner slimscroll">
+    <div id="sidebar-menu" class="sidebar-menu">
+      <ul>
+        <li class="menu-title">
+          <span>Admin</span>
+        </li>
+        <li name="dashboard">
+          <a href="<%- urls.admin.dashboard %>"><i class="la la-dashboard"></i> <span>Dashboard</span></a>
+        </li>
+        <li name="jobs">
+          <a href="<%- urls.admin.jobs %>"><i class="la la-briefcase"></i> <span>Jobs</span></a>
+        </li>
+        <li name="employees">
+          <a href="<%- urls.admin.employees %>"><i class="la la-user"></i> <span>Employees</span></a>
+        </li>
+        <li name="teams">
+          <a href="<%- urls.admin.teams %>"><i class="la la-users"></i> <span>Teams</span></a>
+        </li>
+        <li name="customers">
+          <a href="<%- urls.admin.customers %>"><i class="la la-user-secret"></i> <span>Customers</span></a>
+        </li>
+        <li name="settings" class="submenu">
+          <a href="#"><i class="la la-cog"></i> <span> Settings </span> <span class="menu-arrow"></span></a>
+          <ul style="display:none">
+            <li name="job_templates"><a href="<%- urls.admin.jobTemplates %>"> Job Templates </a></li>
+            <li name="task_templates"><a href="<%- urls.admin.taskTemplates %>"> Task Templates </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    const $parent = "<%- menu.parent %>";
+    const $child = "<%- menu.child %>";
+    const $li_parent = $(`#sidebar-menu ul li[name='${$parent}']`);
+    !$li_parent.hasClass("submenu") ?
+      $(`#sidebar-menu ul li[name='${$parent}']`).addClass("active") :
+      $(`#sidebar-menu ul li[name='${$parent}'] > ul > li[name='${$child}'] > a`).addClass("active");
+  });
+</script>
