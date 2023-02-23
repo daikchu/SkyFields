@@ -1,5 +1,6 @@
 const urls = require(root + "/views/pages/routes.lynx").urls;
 const execute = require(root + "/data/services.lynx").Execute;
+const services = require(root + "/data/services.lynx");
 
 module.exports = function(app) {
   app.route(urls.admin.jobs)
@@ -23,7 +24,12 @@ module.exports = function(app) {
     }
   })
   .post((request, response) => {
-    
+    debugger;
+    const $1 = async function() {
+          const result = await services.Execute(idToken);
+            debugger;
+
+        }
   });
 
   app.route("/ff" + urls.admin.jobs)

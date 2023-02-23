@@ -1,18 +1,105 @@
 $(document).ready(function () {
-  // const $1 = async () => {
-  //   await $.ajax({
-  //     url: "/data" + url,
-  //     type: "POST",
-  //     contentType: "application/json; charset=utf-8",
-  //     success: function (response) {
-  //       $data = response;
-  //     }
-  //   });
-  // };
+  const $1 = async () => {
+    await $.ajax({
+      url: "/data" + url,
+      type: "POST",
+      contentType: "application/json; charset=utf-8",
+      success: function (response) {
+        $data = response;
+      }
+    });
+  };
 
-  // const $2 = async () => {
-  //   const data = await $1();
-  // };
+
+ /* $('#DataTables_Table_0').dataTable({
+    destroy: true,
+    aaData: response.data
+  });*/
+  function fetchData() {
+    $.ajax({
+      url: "/skyfields/admin/jobs",
+      type: "GET",
+      success: function(response) {
+        response.status ? window.location.replace(response.redirect) : $.notification("warning", response.message, 3000);
+      }
+    });
+  }
+  fetchData();
+
+
+  function actionCreateJobs() {
+    debugger;
+    const jobName = $("input[name='create_jobName']").val();
+    const startDate = $("input[name='create_startDate']").val();
+    const endDate = $("input[name='create_endDate']").val();
+    const rate = $("input[name='create_rate']").val();
+    const rateType = $("input[name='create_rate']").val();
+    const priority = $("input[name='create_priority']").val();
+    const description = $("#editor").html();
+    let dataCreate = {
+        name: jobName,
+      team_id: "None",
+      status: "Start",
+      start_date: startDate,
+      end_date: endDate,
+      // rate: rate,
+      sitelocation_id: "None",
+      scope_of_work: "None",
+      project_id: "1",
+      description: description
+    };
+    debugger;
+    $.ajax({
+      url: "/skyfields/admin/jobs",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(dataCreate),
+      success: function(response) {
+        debugger;
+        response.status ? window.location.replace(response.redirect) : $.notification("warning", response.message, 3000);
+      }
+    });
+    debugger;
+  }
+  $(".submitCreate_jobs").click(function () {
+    debugger;
+    const jobName = $("input[name='create_jobName']").val();
+    const startDate = $("input[name='create_startDate']").val();
+    const endDate = $("input[name='create_endDate']").val();
+    const rate = $("input[name='create_rate']").val();
+    const rateType = $("input[name='create_rate']").val();
+    const priority = $("input[name='create_priority']").val();
+    const description = $("#editor").html();
+    let dataCreate = {
+            name: jobName,
+      team_id: "Node",
+      status: "Start",
+      start_date: startDate,
+      end_date: endDate,
+      // rate: rate,
+      sitelocation_id: "None",
+      scope_of_work: "None",
+      project_id: "1",
+      description: description,
+      priority: priority
+    };
+    debugger;
+    $.ajax({
+      url: "/skyfields/admin/jobs",
+      type: "POST",
+      contentType: "application/json",
+      data: JSON.stringify(dataCreate),
+      success: function(response) {
+        debugger;
+        response.status ? window.location.replace(response.redirect) : $.notification("warning", response.message, 3000);
+      }
+    });
+    debugger;
+  });
+
+  const $2 = async () => {
+    const data = await $1();
+  };
   $(".datatable").DataTable({
     dom: '<"table_header"<"left"lf><"right"B>>t<"table_footer"ip>',
     pageLength: 10,
