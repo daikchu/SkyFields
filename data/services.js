@@ -1,7 +1,6 @@
 const admin = require("firebase-admin");
 const serviceAccount = require(root + "/env/skyfields-f9129-firebase-adminsdk-8succ-6409074ccc.json");
 // const { getAuth, signInWithEmailAndPassword } = require("firebase/auth");
-
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://skyfields-f9129-default-rtdb.firebaseio.com"
@@ -23,14 +22,57 @@ async function GetJobs() {
   return snapshot.docs.map(doc => doc.data());
 }
 
+async function Execute(table, data) {
+  const res = await db.collection(table).add(data);
+  return res.id;
+}
+
 async function Fetch(table) {
   const snapshot = await db.collection(table).get();
   return snapshot.docs.map(doc => doc.data());
 }
 
-async function Execute(table, data) {
-  const res = await db.collection(table).add(data);
-  return res.id;
+async function FetchPage(table, filters, offset, limit) {
+  let query = admin.firestore().collection(table);
+  var list = [];
+  if(filters) {
+    filters.forEach((filter) => {
+      query = query.where(filter.name, filter.operator, filter.value);
+    });
+  }
+  const snapshot = await query.offset(offset).limit(limit).get();
+  snapshot.forEach((d) => {
+    list.push({id: d.id, data: d.data()});
+  });
+
+  return list;
+}
+
+async function FetchFilter(table, filters) {
+  var list = [];
+  let query = admin.firestore().collection(table);
+  if(filters) {
+    filters.forEach((filter) => {
+      query = query.where(filter.name, filter.operator, filter.value);
+    });
+  }
+  const snapshot = await query.get();
+  snapshot.forEach((d) => {
+    list.push({id: d.id, data: d.data()});
+  });
+
+  return list;
+}
+
+async function GetCount(table, filters) {
+  let query = admin.firestore().collection(table);
+  if(filters) {
+    filters.forEach((filter) => {
+      query = query.where(filter.name, filter.operator, filter.value);
+    });
+  }
+  const snapshotCount = await query.count().get();
+  return snapshotCount._data.count;
 }
 
 // function getJobs() {
@@ -62,4 +104,4 @@ async function Execute(table, data) {
 //   return snapshot.docs.map(doc => doc.data());
 // }
 
-module.exports = { Fetch, Execute, VerifyUser, GetUserInfoByUID };
+module.exports = { Fetch, FetchFilter, FetchPage, GetCount, Execute, VerifyUser, GetUserInfoByUID };

@@ -1,4 +1,4 @@
-const urls = require("./routes.lynx").urls;
+const urls = require("./routes.js").urls;
 
 module.exports = function(app) {
   // Profile

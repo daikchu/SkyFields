@@ -1,5 +1,5 @@
-const project = require("./routes.lynx").project;
-const services = require(root + "/data/services.lynx");
+const project = require("./routes").project;
+const services = require(root + "/data/services.js");
 
 module.exports = function(app) {
   app.route("/")

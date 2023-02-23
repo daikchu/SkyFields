@@ -1,4 +1,4 @@
-const urls = require(root + "/views/pages/routes.lynx").urls;
+const urls = require(root + "/views/pages/routes.js").urls;
 
 module.exports = function(app) {
   app.route(urls.admin.employee + "/:id")

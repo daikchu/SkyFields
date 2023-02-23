@@ -55,6 +55,16 @@ $(document).ready(function () {
   }
   
   $1();
-  
-  
+
+  /*const getJobById = async function() {
+    debugger;
+    const filters = [
+      { name: "id", operator: "==", value: "jobs_1676824983961" }
+    ];
+    const result = await Fetch('jobs', filters);
+    console.log('result get job by id = ',result);
+  }
+  getJobById();*/
+
+
 });

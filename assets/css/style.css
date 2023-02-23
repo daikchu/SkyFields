@@ -7007,4 +7007,13 @@ button.close {
   white-space: nowrap;
 }
 
+.select-entry {
+  width: auto;
+  display: inline-block;
+}
+
+.table-responsive {
+  overflow-x: unset !important;
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -120,3 +120,8 @@ tr.view_tasks .task-wrapper {
   display: flex;
   justify-content: space-between;
 }
+
+.job-detail-tab {
+  max-height: 300px;
+  overflow: auto;
+}

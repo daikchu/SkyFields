@@ -1,7 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.0/firebase-app.js"; 
 import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/9.17.0/firebase-auth.js";
 import { getFirestore, collection, query, documentId, doc, where, getDocs, deleteDoc } from "https://www.gstatic.com/firebasejs/9.17.0/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyAPZmmLYmU9mu5sfAJVEeS242gkIhJ8IvI",
   authDomain: "skyfields-f9129.firebaseapp.com",
@@ -12,7 +11,6 @@ const firebaseConfig = {
   appId: "1:322279528188:web:831c95e3c078e56f93e979",
   measurementId: "G-DYQCEJZ7Q3"
 };
-
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);

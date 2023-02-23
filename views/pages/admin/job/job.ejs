@@ -5,7 +5,7 @@
     <div class="page-header">
       <div class="row align-items-center">
         <div class="col">
-          <h3 class="page-title">9KX02099A Grandview Hill</h3>
+          <h3 class="page-title"><%= job.name %></h3>
           <ul class="breadcrumb">
             <li class="breadcrumb-item"><a href="<%- urls.admin.dashboard %>">Dashboard</a></li>
             <li class="breadcrumb-item"><a href="<%- urls.admin.jobs %>">Jobs</a></li>
@@ -31,47 +31,48 @@
                 <div class="job_fields">
                   <div field="job_name">
                     <field>Job Name</field>
-                    <val>9KX02099A Grandview Hill</val>
+                    <val><%= job.name %></val>
                   </div>
                   <div field="forecast">
                     <field>Forecast Start - End</field>
-                    <val>01/01/2022 - 01/04/2022</val>
+                    <val><%= job.start_date %> - <%= job.end_date %></val>
                   </div>
                   <div field="scope_of_work">
                     <field>Scope of Work</field>
-                    <val>Construction</val>
+                    <val><%= job.scope_of_work %></val>
                   </div>
                   <div field="customer">
                     <field>Customer</field>
-                    <val>SBA</val>
+                    <val>{{Customer}}</val>
                   </div>
                   <div field="site_location">
                     <field>Site Location</field>
-                    <val>1175 Murfreesboro Pike, Nashville,<br>TN 37217, United States</val>
+                    <val>{{get by sitelocation_id}} 1175 Murfreesboro Pike, Nashville,<br>TN 37217, United States</val>
                   </div>
                   <div field="tower_type">
                     <field>Tower Type</field>
-                    <val>Guided Tower</val>
+                    <val>{{None}} Guided Tower</val>
                   </div>
                   <div field="tower_owner">
                     <field>Tower Owner</field>
-                    <val>Crown</val>
+                    <val>{{None}} Crown</val>
                   </div>
                   <div field="tower_owner_poc">
                     <field>Tower Owner POC</field>
-                    <val>Jeff Bailey, Jeff Brent</val>
+                    <val>{{None}} Jeff Bailey, Jeff Brent</val>
                   </div>
                   <div field="contact">
                     <field>Contact</field>
-                    <val>Tom Hillland</val>
+                    <val>{{None}} Tom Hillland</val>
                   </div>
                   <div field="phone_number">
                     <field>Phone Number</field>
-                    <val>(615) 361-0457</val>
+                    <val>{{None}} (615) 361-0457</val>
                   </div>
                   <div field="access_information">
                     <field>Access Information</field>
                     <val>
+                      {{None}}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Donec vel elit neque. Class aptent taciti sociosqu ad litora
                       torquent per conubia nostra, per inceptos himenaeos.
@@ -83,6 +84,7 @@
                   <div field="direction">
                     <field>Direction</field>
                     <val>
+                      {{None}}
                       Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                       Donec vel elit neque. Class aptent taciti sociosqu ad litora
                       torquent per conubia nostra, per inceptos himenaeos.
