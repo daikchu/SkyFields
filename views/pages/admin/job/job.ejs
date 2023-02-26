@@ -1,775 +1,553 @@
-<div class="page-wrapper">
+<div ng-app="skyFields" ng-controller="jobController" class="page-wrapper">
+  <div ng-show="!isLoading">
+    <input id="jobId" value="<%= id %>" hidden>
 
-  <div class="content container-fluid">
+    <div class="content container-fluid">
 
-    <div class="page-header">
-      <div class="row align-items-center">
-        <div class="col">
-          <h3 class="page-title"><%= job.name %></h3>
-          <ul class="breadcrumb">
-            <li class="breadcrumb-item"><a href="<%- urls.admin.dashboard %>">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="<%- urls.admin.jobs %>">Jobs</a></li>
-            <li class="breadcrumb-item active">Job ID <%- id %></li>
-          </ul>
-        </div>
-        <div class="col-auto float-end ms-auto">
-          <a href="#" class="btn add-btn ms-2">Start Job</a>
-        </div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-lg-8 col-xl-9">
-        <div class="card">
-          <div class="card-body row">
-            <div class="col-md-6">
-              <div class="job_info">
-                <div class="job_info_title">
-                  <h6 class="card-title m-b-0">Job Info</h6>
-                  <button type="button" class="btn-sm btn-primary"><i class="fa fa-pencil"></i> Edit</button>
-                </div>
-                <div class="job_fields">
-                  <div field="job_name">
-                    <field>Job Name</field>
-                    <val><%= job.name %></val>
-                  </div>
-                  <div field="forecast">
-                    <field>Forecast Start - End</field>
-                    <val><%= job.start_date %> - <%= job.end_date %></val>
-                  </div>
-                  <div field="scope_of_work">
-                    <field>Scope of Work</field>
-                    <val><%= job.scope_of_work %></val>
-                  </div>
-                  <div field="customer">
-                    <field>Customer</field>
-                    <val>{{Customer}}</val>
-                  </div>
-                  <div field="site_location">
-                    <field>Site Location</field>
-                    <val>{{get by sitelocation_id}} 1175 Murfreesboro Pike, Nashville,<br>TN 37217, United States</val>
-                  </div>
-                  <div field="tower_type">
-                    <field>Tower Type</field>
-                    <val>{{None}} Guided Tower</val>
-                  </div>
-                  <div field="tower_owner">
-                    <field>Tower Owner</field>
-                    <val>{{None}} Crown</val>
-                  </div>
-                  <div field="tower_owner_poc">
-                    <field>Tower Owner POC</field>
-                    <val>{{None}} Jeff Bailey, Jeff Brent</val>
-                  </div>
-                  <div field="contact">
-                    <field>Contact</field>
-                    <val>{{None}} Tom Hillland</val>
-                  </div>
-                  <div field="phone_number">
-                    <field>Phone Number</field>
-                    <val>{{None}} (615) 361-0457</val>
-                  </div>
-                  <div field="access_information">
-                    <field>Access Information</field>
-                    <val>
-                      {{None}}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Donec vel elit neque. Class aptent taciti sociosqu ad litora
-                      torquent per conubia nostra, per inceptos himenaeos.
-                      Vestibulum sollicitudin libero vitae est consectetur, a
-                      molestie tortor consectetur. Aenean tincidunt interdum
-                      ipsum, id pellentesque diam suscipit ut. Vivamus massa mi,
-                    </val>
-                  </div>
-                  <div field="direction">
-                    <field>Direction</field>
-                    <val>
-                      {{None}}
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                      Donec vel elit neque. Class aptent taciti sociosqu ad litora
-                      torquent per conubia nostra, per inceptos himenaeos.
-                      Vestibulum sollicitudin libero vitae est consectetur, a
-                      molestie tortor consectetur. Aenean tincidunt interdum
-                      ipsum, id pellentesque diam suscipit ut. Vivamus massa mi,
-                    </val>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <iframe width="100%" height="100%" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=1175+Murfreesboro+Pike,+Nashville,+TN+37217,+USA&amp;t=k&amp;z=15&amp;output=embed&amp;iwloc=near" title="1175 Murfreesboro Pike, Nashville, TN 37217, United States" aria-label="1175 Murfreesboro Pike, Nashville, TN 37217, United States" frameborder="0"></iframe>
-            </div>
-          </div>
-        </div>
-
-        <div class="row milestones_tasks">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-body">
-                <div class="milestone_title">
-                  <h6 class="card-title">Job Milestones & Tasks</h6>
-                  <div class="right">
-                    <select class="form-control form-select">
-                      <option>All Tasks</option>
-                      <option>Document</option>
-                      <option>Gallery</option>
-                    </select>
-                    <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#create_milestone"><i class="fa fa-plus"></i> Create Milestone</button>
-                  </div>
-                </div>
-                <content>
-                  <div class="milestones_progress">
-                    <p class="m-b-5">Progress <span class="text-success float-end">40%</span></p>
-                    <div class="progress progress-xs mb-0">
-                      <div class="progress-bar bg-success" role="progressbar" data-bs-toggle="tooltip" title="40%"
-                      style="width: 40%"></div>
-                    </div>
-                  </div>
-                  <div class="milestones">
-                    <div class="item precon">
-                      <item-header>
-                        <item-title><i class="fa fa-check-circle"></i> <name>MS01</name> <status>Precon Scoping</status></item-title>
-                        <item-time><span>End Date</span> <date>Thu, 01/01/2022</date></item-time>
-                      </item-header>
-                      <item-body>
-                        <div class="tasks">
-                          <div class="task_item precon">
-                            <div>
-                              <action>1 x Lift Plan Completed</action>
-                              <date>01/03/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item bom">
-                            <div>
-                              <action>1 x Fiber Inspection</action>
-                              <date>01/02/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item in_progress">
-                            <div>
-                              <action>1 x BOM Pickup</action>
-                              <date>01/01/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item precon">
-                            <div>
-                              <action>1 x Lift Plan Completed</action>
-                              <date>01/03/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                        </div>
-                      </item-body>
-                      <item-footer>
-                      </item-footer>
-                    </div>
-                    <div class="item bom">
-                      <item-header>
-                        <item-title><i class="fa fa-spinner"></i> <name>MS02</name> <status>BOM Pick up</status></item-title>
-                        <item-time><span>End Date</span> <date>Fri, 01/02/2022</date></item-time>
-                      </item-header>
-                      <item-body>
-                        <div class="tasks">
-                          <div class="task_item precon">
-                            <div>
-                              <action>1 x Lift Plan Completed</action>
-                              <date>01/03/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item bom">
-                            <div>
-                              <action>1 x Fiber Inspection</action>
-                              <date>01/02/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item in_progress">
-                            <div>
-                              <action>1 x BOM Pickup</action>
-                              <date>01/01/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item precon">
-                            <div>
-                              <action>1 x Lift Plan Completed</action>
-                              <date>01/03/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                        </div>
-                      </item-body>
-                      <item-footer>
-                      </item-footer>
-                    </div>
-                    <div class="item start">
-                      <item-header>
-                        <item-title><i class="fa fa-check-circle"></i> <name>MS02</name> <status>Construction Start</status></item-title>
-                        <item-time><span>End Date</span> <date>Sat, 01/03/2022</date></item-time>
-                      </item-header>
-                      <item-body>
-                        <div class="tasks">
-                          <div class="task_item precon">
-                            <div>
-                              <action>1 x Lift Plan Completed</action>
-                              <date>01/03/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item bom">
-                            <div>
-                              <action>1 x Fiber Inspection</action>
-                              <date>01/02/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item in_progress">
-                            <div>
-                              <action>1 x BOM Pickup</action>
-                              <date>01/01/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item precon">
-                            <div>
-                              <action>1 x Lift Plan Completed</action>
-                              <date>01/03/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                        </div>
-                      </item-body>
-                      <item-footer>
-                        <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_task"><i class="fa fa-plus"></i> Add Task</button>
-                      </item-footer>
-                    </div>
-                    <div class="item precon">
-                      <item-header>
-                        <item-title><i class="fa fa-check-circle"></i> <name>MS03</name> <status>Precon Scoping</status></item-title>
-                        <item-time><span>End Date</span> <date>Mon, 01/05/2022</date></item-time>
-                      </item-header>
-                      <item-body>
-                        <div class="tasks">
-                          <div class="task_item precon">
-                            <div>
-                              <action>1 x Lift Plan Completed</action>
-                              <date>01/03/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item bom">
-                            <div>
-                              <action>1 x Fiber Inspection</action>
-                              <date>01/02/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item in_progress">
-                            <div>
-                              <action>1 x BOM Pickup</action>
-                              <date>01/01/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                          <div class="task_item precon">
-                            <div>
-                              <action>1 x Lift Plan Completed</action>
-                              <date>01/03/2022</date>
-                            </div>
-                            <div>
-                              <name>Tower Validation</name>
-                              <milestone>MS03</milestone>
-                            </div>
-                            <div>
-                              <type>Document</type>
-                               <a href="<%- urls.admin.task %>/1">View task</a>
-                            </div>
-                          </div>
-                        </div>
-                      </item-body>
-                      <item-footer>
-                        <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_task"><i class="fa fa-plus"></i> Add Task</button>
-                      </item-footer>
-                    </div>
-                  </div>
-                </content>
-              </div>
-            </div>
-          </div>
-        </div>
-        
-      </div>
-      <div class="col-lg-4 col-xl-3">
-        <div class="card project_progress">
-          <div class="card-body">
-            <div class="job_info_title">
-              <h6 class="card-title m-b-0">Job Documents</h6>
-              <button type="button" class="btn-sm btn-primary"><i class="fa fa-pencil"></i> Edit</button>
-            </div>
-            <content>
-              <div class="documents">
-                <div class="item">
-                  <i class="fa fa-file-pdf"></i> <a href="#">9KX02099A RFDS REV.1 Final Redline 09/09/2022</a>
-                </div>
-                <div class="item">
-                  <i class="fa fa-file-excel"></i> <a href="#">9KX02099A BOM Final Redline 09/09/2022</a>
-                </div>
-                <div class="item">
-                  <i class="fa fa-file-word"></i> <a href="#">9KX02099A Precon Note Final Redline 09/09/2022</a>
-                </div>
-                <div class="item">
-                  <i class="fa fa-file-archive"></i> <a href="#">9KX02099A Precon Photos</a>
-                </div>
-              </div>
-            </content>
-          </div>
-        </div>
-        <div class="card project_progress">
-          <div class="card-body">
-            <h6 class="card-title">Job Daily Reports</h6>
-            <total>9</total>
-            <content>
-              <div class="reports">
-                <div class="item">
-                  <div><i class="fa fa-file"></i> <a href="#">Date 01/01</a></div>
-                  <div>6x octo antennas installed, 3x AHLOA RRU removed, 2x partial complete cabinet, and alpha sector frames is installed</div>
-                </div>
-                <div class="item">
-                  <div><i class="fa fa-file"></i> <a href="#">Date 01/02</a></div>
-                  <div>Off duty due to rainstorm</div>
-                </div>
-                <div class="item">
-                  <div><i class="fa fa-file"></i> <a href="#">Date 01/03</a></div>
-                  <div>Off duty due to missing materials</div>
-                </div>
-                <div class="item">
-                  <div><i class="fa fa-file"></i> <a href="#">Date 01/01</a></div>
-                  <div>6x octo antennas installed, 3x AHLOA RRU removed, 2x partial complete cabinet, and alpha sector frames is installed</div>
-                </div>
-                <div class="item">
-                  <div><i class="fa fa-file"></i> <a href="#">Date 01/02</a></div>
-                  <div>Off duty due to rainstorm</div>
-                </div>
-                <div class="item">
-                  <div><i class="fa fa-file"></i> <a href="#">Date 01/03</a></div>
-                  <div>Off duty due to missing materials</div>
-                </div>
-                <div class="item">
-                  <div><i class="fa fa-file"></i> <a href="#">Date 01/01</a></div>
-                  <div>6x octo antennas installed, 3x AHLOA RRU removed, 2x partial complete cabinet, and alpha sector frames is installed</div>
-                </div>
-                <div class="item">
-                  <div><i class="fa fa-file"></i> <a href="#">Date 01/02</a></div>
-                  <div>Off duty due to rainstorm</div>
-                </div>
-                <div class="item">
-                  <div><i class="fa fa-file"></i> <a href="#">Date 01/03</a></div>
-                  <div>Off duty due to missing materials</div>
-                </div>
-              </div>
-            </content>
-          </div>
-        </div>
-        <div class="card project-user">
-          <div class="card-body">
-            <div class="job_info_title">
-              <h6 class="card-title m-b-0">Team: <span>Team Tony</span></h6>
-              <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#assign_user"><i class="fa fa-pencil"></i> Edit</button>
-            </div>
-            <ul class="list-box">
-              <li>
-                <a href="profile.html">
-                  <div class="list-item">
-                    <div class="list-left">
-                      <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-02.jpg"></span>
-                    </div>
-                    <div class="list-body">
-                      <span class="message-author">John Doe</span>
-                      <div class="clearfix"></div>
-                      <span class="message-content">Web Designer</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="profile.html">
-                  <div class="list-item">
-                    <div class="list-left">
-                      <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-09.jpg"></span>
-                    </div>
-                    <div class="list-body">
-                      <span class="message-author">Richard Miles</span>
-                      <div class="clearfix"></div>
-                      <span class="message-content">Web Developer</span>
-                    </div>
-                  </div>
-                </a>
-              </li>
+      <div class="page-header">
+        <div class="row align-items-center">
+          <div class="col">
+            <h3 class="page-title">{{job.name}}</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="<%- urls.admin.dashboard %>">Dashboard</a></li>
+              <li class="breadcrumb-item"><a href="<%- urls.admin.jobs %>">Jobs</a></li>
+              <li class="breadcrumb-item active">{{job.id}}</li>
             </ul>
           </div>
-        </div>
-        <div class="card project_progress">
-          <div class="card-body">
-            <h6 class="card-title">Job Issues</h6>
-            <total>6</total>
-            <content>
-              <div class="issues">
-                <div class="item">
-                  <div><name>Missing equipment</name> <div class="text-success">Resolved</div></div>
-                  <div>Reported by: <span>John</span></div>
-                </div>
-                <div class="item">
-                  <div><name>Antenna broken</name> <div class="text-success">Resolved</div></div>
-                  <div>Reported by: <span>John</span></div>
-                </div>
-                <div class="item">
-                  <div><name>Station water leak</name> <div class="text-danger">Reported</div></div>
-                  <div>Reported by: <span>John</span></div>
-                </div>
-                <div class="item">
-                  <div><name>Missing equipment</name> <div class="text-success">Resolved</div></div>
-                  <div>Reported by: <span>John</span></div>
-                </div>
-                <div class="item">
-                  <div><name>Antenna broken</name> <div class="text-success">Resolved</div></div>
-                  <div>Reported by: <span>John</span></div>
-                </div>
-                <div class="item">
-                  <div><name>Station water leak</name> <div class="text-danger">Reported</div></div>
-                  <div>Reported by: <span>John</span></div>
-                </div>
-                <div class="item">
-                  <div><name>Missing equipment</name> <div class="text-success">Resolved</div></div>
-                  <div>Reported by: <span>John</span></div>
-                </div>
-                <div class="item">
-                  <div><name>Antenna broken</name> <div class="text-success">Resolved</div></div>
-                  <div>Reported by: <span>John</span></div>
-                </div>
-                <div class="item">
-                  <div><name>Station water leak</name> <div class="text-danger">Reported</div></div>
-                  <div>Reported by: <span>John</span></div>
-                </div>
-              </div>
-            </content>
+          <div class="col-auto float-end ms-auto">
+            <a href="#" class="btn add-btn ms-2">Start Job</a>
           </div>
         </div>
-        <div class="card weather">
-          <div class="card-body">
-            <div class="job_info_title">
-              <h6 class="card-title m-b-0">Weather Forecast</h6>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-8 col-xl-9">
+          <div class="card">
+            <div class="card-body row">
+              <div class="col-md-6">
+                <div class="job_info">
+                  <div class="job_info_title">
+                    <h6 class="card-title m-b-0">Job Info</h6>
+                    <button type="button" class="btn-sm btn-primary"><i class="fa fa-pencil"></i> Edit</button>
+                  </div>
+                  <div class="job_fields">
+                    <div field="job_name">
+                      <field>Job Name</field>
+                      <val>{{job.name}}</val>
+                    </div>
+                    <div field="forecast">
+                      <field>Forecast Start - End</field>
+                      <val>{{job.start_date | date: 'yyyy/MM/dd' }} - {{job.start_date | date: 'yyyy/MM/dd' }}</val>
+                    </div>
+                    <div field="scope_of_work">
+                      <field>Scope of Work</field>
+                      <val>{{job.scope_of_work}}</val>
+                    </div>
+                    <div field="customer">
+                      <field>Customer</field>
+                      <val>[Customer]</val>
+                    </div>
+                    <div field="site_location">
+                      <field>Site Location</field>
+                      <val>[get by sitelocation_id] 1175 Murfreesboro Pike, Nashville,<br>TN 37217, United States</val>
+                    </div>
+                    <div field="tower_type">
+                      <field>Tower Type</field>
+                      <val>[None] Guided Tower</val>
+                    </div>
+                    <div field="tower_owner">
+                      <field>Tower Owner</field>
+                      <val>[None] Crown</val>
+                    </div>
+                    <div field="tower_owner_poc">
+                      <field>Tower Owner POC</field>
+                      <val>[None] Jeff Bailey, Jeff Brent</val>
+                    </div>
+                    <div field="contact">
+                      <field>Contact</field>
+                      <val>[None] Tom Hillland</val>
+                    </div>
+                    <div field="phone_number">
+                      <field>Phone Number</field>
+                      <val>[None] (615) 361-0457</val>
+                    </div>
+                    <div field="access_information">
+                      <field>Description</field>
+                      {{job.description}}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <iframe width="100%" height="100%" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?q=1175+Murfreesboro+Pike,+Nashville,+TN+37217,+USA&amp;t=k&amp;z=15&amp;output=embed&amp;iwloc=near" title="1175 Murfreesboro Pike, Nashville, TN 37217, United States" aria-label="1175 Murfreesboro Pike, Nashville, TN 37217, United States" frameborder="0"></iframe>
+              </div>
             </div>
-            <div class="owl-carousel">
-              <div class="item sunny">
-                <day>Monday</day>
-                <date>10/10/2022</date>
-                <i class="fa fa-sun"></i>
-                <weather>Sunny</weather>
+          </div>
+
+          <div class="row milestones_tasks">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-body">
+                  <div class="milestone_title">
+                    <h6 class="card-title">Job Milestones & Tasks</h6>
+                    <div class="right">
+                      <select class="form-control form-select">
+                        <option>All Tasks</option>
+                        <option>Document</option>
+                        <option>Gallery</option>
+                      </select>
+                      <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#create_milestone"><i class="fa fa-plus"></i> Create Milestone</button>
+                    </div>
+                  </div>
+                  <content>
+                    <div class="milestones_progress">
+                      <p class="m-b-5">Progress <span class="text-success float-end">{{calProcessMilestone(job.milestones)}}%</span></p>
+                      <div class="progress progress-xs mb-0">
+                        <div class="progress-bar bg-success" role="progressbar" data-bs-toggle="tooltip"
+                             style="width: 30%"></div>
+                      </div>
+                    </div>
+                    <div class="milestones">
+                      <div ng-repeat="milestone in job.milestones"
+                           class="item {{milestone.status === 'Open' ? 'start' : milestone.status === 'Inprogress' ? 'precon' : 'bom'}} ">
+                        <item-header>
+                          <item-title><i class="fa fa-check-circle"></i> <name>{{milestone.name}}</name> <status>{{milestone.status}}</status></item-title>
+                          <item-time><span>End Date</span> <date>{{milestone.end_date | date : 'yyyy/MM/dd'}}</date></item-time>
+                        </item-header>
+                        <item-body>
+                          <div class="tasks">
+                            <div ng-repeat="task in milestone.job_tasks"
+                                 class="task_item {{task.status === 'Open' ? 'start' : task.status === 'Inprogress' ? 'precon' : 'bom'}} ">
+                              <div>
+                                <action>{{task.name}}</action>
+                                <date>{{task.end_date | date : 'yyyy/MM/dd'}}</date>
+                              </div>
+                              <div>
+                                <name>{{task.topic}}</name>
+                                <milestone>{{milestone.name}}</milestone>
+                              </div>
+                              <div>
+                                <type>Document</type>
+                                <a href="<%- urls.admin.task %>/{{task.id}}">View task</a>
+                              </div>
+                            </div>
+                            <!--<div class="task_item bom">
+                              <div>
+                                <action>1 x Fiber Inspection</action>
+                                <date>01/02/2022</date>
+                              </div>
+                              <div>
+                                <name>Tower Validation</name>
+                                <milestone>MS03</milestone>
+                              </div>
+                              <div>
+                                <type>Document</type>
+                                <a href="<%- urls.admin.task %>/1">View task</a>
+                              </div>
+                            </div>
+                            <div class="task_item in_progress">
+                              <div>
+                                <action>1 x BOM Pickup</action>
+                                <date>01/01/2022</date>
+                              </div>
+                              <div>
+                                <name>Tower Validation</name>
+                                <milestone>MS03</milestone>
+                              </div>
+                              <div>
+                                <type>Document</type>
+                                <a href="<%- urls.admin.task %>/1">View task</a>
+                              </div>
+                            </div>
+                            <div class="task_item precon">
+                              <div>
+                                <action>1 x Lift Plan Completed</action>
+                                <date>01/03/2022</date>
+                              </div>
+                              <div>
+                                <name>Tower Validation</name>
+                                <milestone>MS03</milestone>
+                              </div>
+                              <div>
+                                <type>Document</type>
+                                <a href="<%- urls.admin.task %>/1">View task</a>
+                              </div>
+                            </div>-->
+                          </div>
+                        </item-body>
+                        <item-footer>
+                          <button ng-if="milestone.status == 'Open'"
+                                  type="button" class="btn-sm btn-primary"
+                                  data-bs-toggle="modal" data-bs-target="#add_task"><i class="fa fa-plus"></i> Add Task</button>
+                        </item-footer>
+                      </div>
+                      <!--<div class="item precon">
+                        <item-header>
+                          <item-title><i class="fa fa-check-circle"></i> <name>MS03</name> <status>Precon Scoping</status></item-title>
+                          <item-time><span>End Date</span> <date>Mon, 01/05/2022</date></item-time>
+                        </item-header>
+                        <item-body>
+                          <div class="tasks">
+
+                          </div>
+                        </item-body>
+                        <item-footer>
+                          <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_task"><i class="fa fa-plus"></i> Add Task</button>
+                        </item-footer>
+                      </div>-->
+                    </div>
+                  </content>
+                </div>
               </div>
-              <div class="item thunder">
-                <day>Tuesday</day>
-                <date>10/11/2022</date>
-                <i class="fa fa-bolt"></i>
-                <weather>Thunder</weather>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-lg-4 col-xl-3">
+          <div class="card project_progress">
+            <div class="card-body">
+              <div class="job_info_title">
+                <h6 class="card-title m-b-0">Job Documents</h6>
+                <button type="button" class="btn-sm btn-primary"><i class="fa fa-pencil"></i> Edit</button>
               </div>
-              <div class="item cloud">
-                <day>Wednesday</day>
-                <date>10/12/2022</date>
-                <i class="fa fa-cloud"></i>
-                <weather>Cloudy</weather>
+              <content>
+                <div class="documents">
+                  <div class="item">
+                    <i class="fa fa-file-pdf"></i> <a href="#">9KX02099A RFDS REV.1 Final Redline 09/09/2022</a>
+                  </div>
+                  <div class="item">
+                    <i class="fa fa-file-excel"></i> <a href="#">9KX02099A BOM Final Redline 09/09/2022</a>
+                  </div>
+                  <div class="item">
+                    <i class="fa fa-file-word"></i> <a href="#">9KX02099A Precon Note Final Redline 09/09/2022</a>
+                  </div>
+                  <div class="item">
+                    <i class="fa fa-file-archive"></i> <a href="#">9KX02099A Precon Photos</a>
+                  </div>
+                </div>
+              </content>
+            </div>
+          </div>
+          <div class="card project_progress">
+            <div class="card-body">
+              <h6 class="card-title">Job Daily Reports</h6>
+              <total>{{job.daily_reports.length}}</total>
+              <content>
+                <div class="reports">
+                  <div ng-repeat="report in job.daily_reports" class="item">
+                    <div><i class="fa fa-file"></i> <a href="#">Date {{report.date | date : 'yyyy/MM/dd'}}</a></div>
+                    <div>{{report.description}}</div>
+                  </div>
+                  <!--<div class="item">
+                    <div><i class="fa fa-file"></i> <a href="#">Date 01/02</a></div>
+                    <div>Off duty due to rainstorm</div>
+                  </div>
+                  <div class="item">s
+                    <div><i class="fa fa-file"></i> <a href="#">Date 01/03</a></div>
+                    <div>Off duty due to missing materials</div>
+                  </div>
+                  <div class="item">
+                    <div><i class="fa fa-file"></i> <a href="#">Date 01/01</a></div>
+                    <div>6x octo antennas installed, 3x AHLOA RRU removed, 2x partial complete cabinet, and alpha sector frames is installed</div>
+                  </div>
+                  <div class="item">
+                    <div><i class="fa fa-file"></i> <a href="#">Date 01/02</a></div>
+                    <div>Off duty due to rainstorm</div>
+                  </div>
+                  <div class="item">
+                    <div><i class="fa fa-file"></i> <a href="#">Date 01/03</a></div>
+                    <div>Off duty due to missing materials</div>
+                  </div>
+                  <div class="item">
+                    <div><i class="fa fa-file"></i> <a href="#">Date 01/01</a></div>
+                    <div>6x octo antennas installed, 3x AHLOA RRU removed, 2x partial complete cabinet, and alpha sector frames is installed</div>
+                  </div>
+                  <div class="item">
+                    <div><i class="fa fa-file"></i> <a href="#">Date 01/02</a></div>
+                    <div>Off duty due to rainstorm</div>
+                  </div>
+                  <div class="item">
+                    <div><i class="fa fa-file"></i> <a href="#">Date 01/03</a></div>
+                    <div>Off duty due to missing materials</div>
+                  </div>-->
+                </div>
+              </content>
+            </div>
+          </div>
+          <div class="card project-user">
+            <div class="card-body">
+              <div class="job_info_title">
+                <h6 class="card-title m-b-0">Team: <span>Team Tony</span></h6>
+                <button type="button" class="btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#assign_user"><i class="fa fa-pencil"></i> Edit</button>
               </div>
-              <div class="item sunny">
-                <day>Thursday</day>
-                <date>10/13/2022</date>
-                <i class="fa fa-sun"></i>
-                <weather>Sunny</weather>
+              <ul class="list-box">
+                <li>
+                  <a href="profile.html">
+                    <div class="list-item">
+                      <div class="list-left">
+                        <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-02.jpg"></span>
+                      </div>
+                      <div class="list-body">
+                        <span class="message-author">John Doe</span>
+                        <div class="clearfix"></div>
+                        <span class="message-content">Web Designer</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="profile.html">
+                    <div class="list-item">
+                      <div class="list-left">
+                        <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-09.jpg"></span>
+                      </div>
+                      <div class="list-body">
+                        <span class="message-author">Richard Miles</span>
+                        <div class="clearfix"></div>
+                        <span class="message-content">Web Developer</span>
+                      </div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="card project_progress">
+            <div class="card-body">
+              <h6 class="card-title">Job Issues</h6>
+              <total>{{job.job_issues.length}}</total>
+              <content>
+                <div class="issues">
+                  <div ng-repeat="issue in job.job_issues" class="item">
+                    <div><name>{{issue.name}}</name> <div class="{{issue.status === 'Resolved' ? 'text-success' : 'text-danger'}} ">{{issue.status}}</div></div>
+                    <div>Reported by: <span>{{issue.user.full_name}}</span></div>
+                  </div>
+                </div>
+              </content>
+            </div>
+          </div>
+          <div class="card weather">
+            <div class="card-body">
+              <div class="job_info_title">
+                <h6 class="card-title m-b-0">Weather Forecast</h6>
               </div>
-              <div class="item cloud">
-                <day>Friday</day>
-                <date>10/12/2022</date>
-                <i class="fa fa-cloud"></i>
-                <weather>Cloudy</weather>
+              <div class="owl-carousel">
+                <div class="item sunny">
+                  <day>Monday</day>
+                  <date>10/10/2022</date>
+                  <i class="fa fa-sun"></i>
+                  <weather>Sunny</weather>
+                </div>
+                <div class="item thunder">
+                  <day>Tuesday</day>
+                  <date>10/11/2022</date>
+                  <i class="fa fa-bolt"></i>
+                  <weather>Thunder</weather>
+                </div>
+                <div class="item cloud">
+                  <day>Wednesday</day>
+                  <date>10/12/2022</date>
+                  <i class="fa fa-cloud"></i>
+                  <weather>Cloudy</weather>
+                </div>
+                <div class="item sunny">
+                  <day>Thursday</day>
+                  <date>10/13/2022</date>
+                  <i class="fa fa-sun"></i>
+                  <weather>Sunny</weather>
+                </div>
+                <div class="item cloud">
+                  <day>Friday</day>
+                  <date>10/12/2022</date>
+                  <i class="fa fa-cloud"></i>
+                  <weather>Cloudy</weather>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
-  <div id="assign_leader" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Assign leader to this job</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="input-group m-b-30">
-            <input placeholder="Search to add a leader" class="form-control search-input" type="text">
-            <button class="btn btn-primary">Search</button>
+    <div id="assign_leader" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Assign leader to this job</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div>
-            <ul class="chat-user-list">
-              <li>
-                <a href="#">
-                  <div class="media d-flex">
-                    <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-09.jpg"></span>
-                    <div class="media-body align-self-center text-nowrap">
-                      <div class="user-name">Richard Miles</div>
-                      <span class="designation">Web Developer</span>
+          <div class="modal-body">
+            <div class="input-group m-b-30">
+              <input placeholder="Search to add a leader" class="form-control search-input" type="text">
+              <button class="btn btn-primary">Search</button>
+            </div>
+            <div>
+              <ul class="chat-user-list">
+                <li>
+                  <a href="#">
+                    <div class="media d-flex">
+                      <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-09.jpg"></span>
+                      <div class="media-body align-self-center text-nowrap">
+                        <div class="user-name">Richard Miles</div>
+                        <span class="designation">Web Developer</span>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="media d-flex">
-                    <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-10.jpg"></span>
-                    <div class="media-body align-self-center text-nowrap">
-                      <div class="user-name">John Smith</div>
-                      <span class="designation">Android Developer</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <div class="media d-flex">
+                      <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-10.jpg"></span>
+                      <div class="media-body align-self-center text-nowrap">
+                        <div class="user-name">John Smith</div>
+                        <span class="designation">Android Developer</span>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="media d-flex">
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <div class="media d-flex">
                     <span class="avatar">
                       <img alt="" src="/assets/images/profiles/avatar-16.jpg">
                     </span>
-                    <div class="media-body align-self-center text-nowrap">
-                      <div class="user-name">Jeffery Lalor</div>
-                      <span class="designation">Team Leader</span>
+                      <div class="media-body align-self-center text-nowrap">
+                        <div class="user-name">Jeffery Lalor</div>
+                        <span class="designation">Team Leader</span>
+                      </div>
                     </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="submit-section">
+              <button class="btn btn-primary submit-btn">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="create_milestone" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div name="addMilestoneForm" class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Milestone</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="form">
+              <div class="form-group row">
+                <label class="col-form-label col-md-3">Name</label>
+                <div class="col-md-9">
+                  <input ng-model="milestoneNew.name"
+                         name="input_milestone_name"
+                         type="text" class="form-control" required>
+                  <span class="error-message"
+                        ng-show="addMilestoneForm.input_milestone_name.$error.required">Required!</span>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-3">Start Date</label>
+                <div class="col-md-9">
+                  <input ng-model="milestoneNew.start_date"
+                         name="input_milestone_start_date"
+                         type="date"
+                         class="form-control start_date" required>
+                  <div role="alert"><span class="error-message" ng-show="addMilestoneForm.input_milestone_start_date.$error.required">Required!</span>
+                    <span class="error-message" ng-show="addMilestoneForm.input_milestone_start_date.$error.date">Not a valid date!</span>
                   </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="submit-section">
-            <button class="btn btn-primary submit-btn">Submit</button>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-3">End Date</label>
+                <div class="col-md-9">
+                  <input ng-model="milestoneNew.end_date"
+                         name="input_milestone_end_date"
+                         type="date" class="form-control end_date" required>
+                  <div role="alert"><span class="error-message" ng-show="addMilestoneForm.input_milestone_end_date.$error.required">Required!</span>
+                    <span class="error-message" ng-show="addMilestoneForm.input_milestone_end_date.$error.date">Not a valid date!</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="submit-section">
+              <button class="btn btn-primary add_milestone_button" ng-click="actionCreateMilestone()"><i class="fa fa-plus"></i> Add Milestone</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="create_milestone" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add Milestone</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="form">
-            <div class="form-group row">
-              <label class="col-form-label col-md-3">Name</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-form-label col-md-3">Start Date</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control start_date">
-              </div>
-            </div>
-            <div class="form-group row">
-              <label class="col-form-label col-md-3">End Date</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control end_date">
-              </div>
-            </div>
+    <div id="add_task" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Add Task</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div class="submit-section">
-            <button class="btn btn-primary add_milestone_button"><i class="fa fa-plus"></i> Add Milestone</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div id="add_task" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Add Task</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <h4>Milestone 1</h4>
-          <div class="milestone_info">
-            <div class="form-group row">
-              <label class="col-form-label col-md-3">Start Date</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" value="01/01/2022" disabled>
+          <div class="modal-body">
+            <h4>Milestone 1</h4>
+            <div class="milestone_info">
+              <div class="form-group row">
+                <label class="col-form-label col-md-3">Start Date</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" value="01/01/2022" disabled>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-3">End Date</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" value="01/04/2022" disabled>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-3">Milestone</label>
+                <div class="col-md-9">
+                  <input type="text" class="form-control" value="Precon Scoping" disabled>
+                </div>
               </div>
             </div>
-            <div class="form-group row">
-              <label class="col-form-label col-md-3">End Date</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" value="01/04/2022" disabled>
-              </div>
+            <hr>
+            <h4>Job Task</h4>
+            <div class="search_option">
+              Topic
+              <select class="topic_select">
+                <option value="General">General</option>
+                <option value="Inspection">Inspection</option>
+              </select>
+              Type
+              <select class="type_select" topic="General">
+                <option value="Install">Install</option>
+                <option value="Relocate">Relocate</option>
+                <option value="Remove">Remove</option>
+                <option value="Transfer">Transfer</option>
+                <option value="Mobilization">Mobilization</option>
+                <option value="Logistic">Logistic</option>
+              </select>
+              <select class="type_select off" topic="Inspection">
+                <option value="Closeout Package">Closeout Package</option>
+                <option value="Punch List">Punch List</option>
+              </select>
             </div>
-            <div class="form-group row">
-              <label class="col-form-label col-md-3">Milestone</label>
-              <div class="col-md-9">
-                <input type="text" class="form-control" value="Precon Scoping" disabled>
-              </div>
-            </div>
-          </div>
-          <hr>
-          <h4>Job Task</h4>
-          <div class="search_option">
-            Topic
-            <select class="topic_select">
-              <option value="General">General</option>
-              <option value="Inspection">Inspection</option>
-            </select>
-            Type
-            <select class="type_select" topic="General">
-              <option value="Install">Install</option>
-              <option value="Relocate">Relocate</option>
-              <option value="Remove">Remove</option>
-              <option value="Transfer">Transfer</option>
-              <option value="Mobilization">Mobilization</option>
-              <option value="Logistic">Logistic</option>
-            </select>
-            <select class="type_select off" topic="Inspection">
-              <option value="Closeout Package">Closeout Package</option>
-              <option value="Punch List">Punch List</option>
-            </select>
-          </div>
-          <div class="search_result">
-            <table class="table table-striped custom-table datatable">
-              <thead>
+            <div class="search_result">
+              <table class="table table-striped custom-table datatable">
+                <thead>
                 <tr>
                   <th>Task Name</th>
                   <th>Topic</th>
                   <th>Type</th>
                   <th>Choose</th>
                 </tr>
-              </thead>
-              <tbody>
+                </thead>
+                <tbody>
                 <tr>
                   <td>Install Internet Hub</td>
                   <td>General</td>
@@ -800,221 +578,238 @@
                   <td>Punch List</td>
                   <td><input type="checkbox"/></td>
                 </tr>
-              </tbody>
-            </table>
-          </div>
-          <div class="submit-section">
-            <button class="btn btn-primary add_milestone_button"><i class="fa fa-plus"></i> New Task Template</button>
-            <button class="btn btn-primary add_milestone_button"><i class="fa fa-plus"></i> Add Task</button>
+                </tbody>
+              </table>
+            </div>
+            <div class="submit-section">
+              <button class="btn btn-primary add_milestone_button"><i class="fa fa-plus"></i> New Task Template</button>
+              <button class="btn btn-primary add_milestone_button"><i class="fa fa-plus"></i> Add Task</button>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-  <div id="assign_user" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Assign the employee to this team</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="input-group m-b-30">
-            <input placeholder="Search an employee to assign" class="form-control search-input" type="text">
-            <button class="btn btn-primary">Search</button>
+    <div id="assign_user" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Assign the employee to this team</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
           </div>
-          <div>
-            <ul class="chat-user-list">
-              <li>
-                <a href="#">
-                  <div class="media d-flex">
-                    <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-09.jpg"></span>
-                    <div class="media-body align-self-center text-nowrap">
-                      <div class="user-name">Richard Miles</div>
-                      <span class="designation">Web Developer</span>
+          <div class="modal-body">
+            <div class="input-group m-b-30">
+              <input placeholder="Search an employee to assign" class="form-control search-input" type="text">
+              <button class="btn btn-primary">Search</button>
+            </div>
+            <div>
+              <ul class="chat-user-list">
+                <li>
+                  <a href="#">
+                    <div class="media d-flex">
+                      <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-09.jpg"></span>
+                      <div class="media-body align-self-center text-nowrap">
+                        <div class="user-name">Richard Miles</div>
+                        <span class="designation">Web Developer</span>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="media d-flex">
-                    <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-10.jpg"></span>
-                    <div class="media-body align-self-center text-nowrap">
-                      <div class="user-name">John Smith</div>
-                      <span class="designation">Android Developer</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <div class="media d-flex">
+                      <span class="avatar"><img alt="" src="/assets/images/profiles/avatar-10.jpg"></span>
+                      <div class="media-body align-self-center text-nowrap">
+                        <div class="user-name">John Smith</div>
+                        <span class="designation">Android Developer</span>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </li>
-              <li>
-                <a href="#">
-                  <div class="media d-flex">
+                  </a>
+                </li>
+                <li>
+                  <a href="#">
+                    <div class="media d-flex">
                     <span class="avatar">
                       <img alt="" src="/assets/images/profiles/avatar-16.jpg">
                     </span>
-                    <div class="media-body align-self-center text-nowrap">
-                      <div class="user-name">Jeffery Lalor</div>
-                      <span class="designation">Team Leader</span>
+                      <div class="media-body align-self-center text-nowrap">
+                        <div class="user-name">Jeffery Lalor</div>
+                        <span class="designation">Team Leader</span>
+                      </div>
                     </div>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div class="submit-section">
-            <button class="btn btn-primary submit-btn">Submit</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <div id="edit_job" class="modal custom-modal fade" role="dialog">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">Edit Job</h5>
-          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <form>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Job Name</label>
-                  <input class="form-control" value="Job Management" type="text">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Client</label>
-                  <select class="select">
-                    <option>Global Technologies</option>
-                    <option>Delta Infotech</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Start Date</label>
-                  <div class="cal-icon">
-                    <input class="form-control datetimepicker" type="text">
-                  </div>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>End Date</label>
-                  <div class="cal-icon">
-                    <input class="form-control datetimepicker" type="text">
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label>Rate</label>
-                  <input placeholder="$50" class="form-control" value="$5000" type="text">
-                </div>
-              </div>
-              <div class="col-sm-3">
-                <div class="form-group">
-                  <label>&nbsp;</label>
-                  <select class="select">
-                    <option>Hourly</option>
-                    <option selected>Fixed</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Priority</label>
-                  <select class="select">
-                    <option selected>High</option>
-                    <option>Medium</option>
-                    <option>Low</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Add Job Leader</label>
-                  <input class="form-control" type="text">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Team Leader</label>
-                  <div class="project-members">
-                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="Jeffery Lalor">
-                      <img alt="" src="/assets/images/profiles/avatar-16.jpg">
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Add Team</label>
-                  <input class="form-control" type="text">
-                </div>
-              </div>
-              <div class="col-sm-6">
-                <div class="form-group">
-                  <label>Team Members</label>
-                  <div class="project-members">
-                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="John Doe">
-                      <img alt="" src="/assets/images/profiles/avatar-02.jpg">
-                    </a>
-                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="Richard Miles">
-                      <img alt="" src="/assets/images/profiles/avatar-09.jpg">
-                    </a>
-                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="John Smith">
-                      <img alt="" src="/assets/images/profiles/avatar-10.jpg">
-                    </a>
-                    <a class="avatar" href="#" data-bs-toggle="tooltip" title="Mike Litorus">
-                      <img alt="" src="/assets/images/profiles/avatar-05.jpg">
-                    </a>
-                    <span class="all-team">+2</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="form-group">
-              <label>Description</label>
-              <textarea rows="4" class="form-control" placeholder="Enter your message here"></textarea>
-            </div>
-            <div class="form-group">
-              <label>Upload Files</label>
-              <input class="form-control" type="file">
+                  </a>
+                </li>
+              </ul>
             </div>
             <div class="submit-section">
-              <button class="btn btn-primary submit-btn">Save</button>
+              <button class="btn btn-primary submit-btn">Submit</button>
             </div>
-          </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div id="edit_job" class="modal custom-modal fade" role="dialog">
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Edit Job</h5>
+            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Job Name</label>
+                    <input class="form-control" value="Job Management" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Client</label>
+                    <select class="select">
+                      <option>Global Technologies</option>
+                      <option>Delta Infotech</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Start Date</label>
+                    <div class="cal-icon">
+                      <input class="form-control datetimepicker" type="text">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>End Date</label>
+                    <div class="cal-icon">
+                      <input class="form-control datetimepicker" type="text">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>Rate</label>
+                    <input placeholder="$50" class="form-control" value="$5000" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>&nbsp;</label>
+                    <select class="select">
+                      <option>Hourly</option>
+                      <option selected>Fixed</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Priority</label>
+                    <select class="select">
+                      <option selected>High</option>
+                      <option>Medium</option>
+                      <option>Low</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Add Job Leader</label>
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Team Leader</label>
+                    <div class="project-members">
+                      <a class="avatar" href="#" data-bs-toggle="tooltip" title="Jeffery Lalor">
+                        <img alt="" src="/assets/images/profiles/avatar-16.jpg">
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Add Team</label>
+                    <input class="form-control" type="text">
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>Team Members</label>
+                    <div class="project-members">
+                      <a class="avatar" href="#" data-bs-toggle="tooltip" title="John Doe">
+                        <img alt="" src="/assets/images/profiles/avatar-02.jpg">
+                      </a>
+                      <a class="avatar" href="#" data-bs-toggle="tooltip" title="Richard Miles">
+                        <img alt="" src="/assets/images/profiles/avatar-09.jpg">
+                      </a>
+                      <a class="avatar" href="#" data-bs-toggle="tooltip" title="John Smith">
+                        <img alt="" src="/assets/images/profiles/avatar-10.jpg">
+                      </a>
+                      <a class="avatar" href="#" data-bs-toggle="tooltip" title="Mike Litorus">
+                        <img alt="" src="/assets/images/profiles/avatar-05.jpg">
+                      </a>
+                      <span class="all-team">+2</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label>Description</label>
+                <textarea rows="4" class="form-control" placeholder="Enter your message here"></textarea>
+              </div>
+              <div class="form-group">
+                <label>Upload Files</label>
+                <input class="form-control" type="file">
+              </div>
+              <div class="submit-section">
+                <button class="btn btn-primary submit-btn">Save</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <div ng-if="isLoading"
+       class="d-flex justify-content-center ng-scope spinner-loading" style="">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+
 
 </div>
 
-<link rel="stylesheet" href="/css/owl.carousel.min.css">
-<script src="/js/moment.min.js"></script>
-<script src="/js/bootstrap-datetimepicker.min.js"></script>
-<script src="/js/jquery.dataTables.min.js"></script>
-<script src="/js/owl.carousel.min.js"></script>
+<link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+<script src="/assets/js/moment.min.js"></script>
+<script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
+<script src="/assets/js/jquery.dataTables.min.js"></script>
+<script src="/assets/js/owl.carousel.min.js"></script>
 <script src="/js/task.js"></script>
+<script src="/views/pages/admin/job/job.js"></script>
+
+<script>
+  const url = "<%- urls.admin.job %>";
+  $(document).ready(function () {
+    getFF("<%- urls.admin.job %>");
+    getSS("<%- urls.admin.job %>");
+  });
+</script>

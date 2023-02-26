@@ -108,34 +108,4 @@ async function FetchJobTask(milestoneId) {
 async function FetchJobTaskItems(jobTaskId) {
 
 }
-
-// function getJobs() {
-//   var data = [];
-//   let jobs = db.collection("Jobs");
-//   jobs.get().then((snap) => {
-//     snap.forEach(document => {
-//       data.push(document.data());
-//       //console.log(document.data());
-//     });
-//   });
-
-//   console.log(data);
-//   return data;
-// }
-
-// async function getUsers(firebase_uid) {
-//   const snapshot = await db.collection("users").where("firebase_uid", "==", firebase_uid).get();
-//   return snapshot.docs.map(doc => doc.data());
-// }
-
-// async function getMarker() {
-//   const snapshot = await db.collection("Jobs").get();
-//   return snapshot.docs.map(doc => doc.data());
-// }
-
-// async function getUserByLogin(username, password) {
-//   const snapshot = await db.collection("Members").where("login.username", "==", username).where("login.password", "==", password).get();
-//   return snapshot.docs.map(doc => doc.data());
-// }
-
 module.exports = { GetJobById, Fetch, FetchFilter, Execute };

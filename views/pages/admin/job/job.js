@@ -1,70 +1,66 @@
-import { Fetch, Delete, documentId } from "/app.js";
+skyApp.controller('jobController', myController);
 
-$(document).ready(function () {
-  $(".owl-carousel").owlCarousel({
-    loop:true,
-    nav:true,
-    navText: ["<i class='fa fa-chevron-left'></i>","<i class='fa fa-chevron-right'></i>"],
-    margin:10,
-    responsiveClass:true,
-    responsive:{
-      0:{
-        items:2,
-        nav:true
-      },
-      600:{
-        items:2,
-        nav:false
-      },
-      1000:{
-        items:3,
-        nav:true,
-        loop:false
-      }
-    }
-  })
+function myController($scope, $http, $filter, genPageShowing, isNotEmpty) {
+    /**variable*/
+    $scope.isLoading = false;
+    $scope.job = {};
+    $scope.jobId = $('#jobId').val();
+    $scope.milestoneNew = {};
+    /**methods*/
+    $scope.getJobById = async function () {//same jobs
+        const jobId = $('#jobId').val();
+        if (!jobId) return;
+        $scope.isLoading = true;
+        await $http.get(API_PREFIX + "/skyfields/admin/job/" + jobId)
+            .then(function (response) {
+                if (response != null && response !== 'undefined' && response.status === 200) {
+                    $scope.job = response.data.data;
+                } else {
+                    $.notification("warning", response.data.message, 3000);
+                }
+            }, function (error) {
+                $.notification("warning", error.data.message, 3000);
+            }).finally(function () {
+                $scope.isLoading = false;
+            });
+    };
+    //Open
+    //Inprogress
+    //Completed
+    $scope.calProcessMilestone = function (milestones) {//same jobs
+        if(!milestones) return 30;
+        const countCompleted = milestones.filter(el => el.status === 'Completed').length;
+        if (!countCompleted || countCompleted === 0) return 0;
+        else return countCompleted / milestones.length * 100;
+    };
 
-  $("#create_milestone .start_date, #create_milestone .end_date").datetimepicker({
-    format: "MM/DD/YYYY"
-  });
+    $scope.actionCreateMilestone = async function(){
+        $scope.milestoneNew.job_id = $scope.jobId;
 
-  $(".topic_select").on("change", function () {
-    var value = $(this).val();f
-    $(".type_select").addClass("off");
-    $(`.type_select[topic=${value}]`).removeClass("off");
-  });
+        $scope.isLoading = true;
+        await $http.post(API_PREFIX + "/skyfields/admin/job/milestones", $scope.milestoneNew)
+            .then(
+                function (response) {
+                    if (response && response.status === 200) {
+                        $.notification("success", response.data.message, 3000);
+                        $('#create_milestone').modal('hide');
+                        $scope.milestoneNew = {};
+                        $scope.getJobById();
+                    } else {
+                        $.notification("warning", response.data.message, 3000);
+                    }
+                }, function (error) {
+                    $.notification("warning", error.data.message, 3000);
+                }).finally(function () {
+                $scope.isLoading = false;
+            });
+    };
 
-  $(".datatable").DataTable({
-    dom: '<"table_header"<"left"lf><"right"B>>t<"table_footer"ip>',
-  });
+    /*$scope.processStyle = {
+        width: $scope.calProcessMilestone($scope.job.milestones)+'%',
+    };*/
 
-  // const filters = [
-  //   { name: "firebase_uid", operator: "==", value: "HapatE1OXVdyAuiSiYJArQ4ppaB2" },
-  //   { name: "role", operator: "==", value: "admin" },
-  // ];
+    /**init*/
 
-  const filters = [
-    { name: "name", operator: "in", value: ["A", "C"] }
-  ];
-
-  var test;
-
-  const $1 = async function() {
-    test = await Fetch("customers");
-    console.log(test);
-  }
-  
-  $1();
-
-  /*const getJobById = async function() {
-    debugger;
-    const filters = [
-      { name: "id", operator: "==", value: "jobs_1676824983961" }
-    ];
-    const result = await Fetch('jobs', filters);
-    console.log('result get job by id = ',result);
-  }
-  getJobById();*/
-
-
-});
+    $scope.getJobById();
+}

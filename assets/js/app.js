@@ -221,7 +221,7 @@ $(document).ready(function() {
 
 	if ($('#editor').length > 0) {
 		ClassicEditor
-		.create( document.querySelector( '#editor' ), {
+		.jobCreate( document.querySelector( '#editor' ), {
 			 toolbar: {
 			    items: [
 			        'heading', '|',

@@ -3,11 +3,14 @@
  */
 var skyApp = angular.module('skyFields', []);
 
+const API_PREFIX = "/api/v1";
+
 //Bat ky tu
 var digitsOnly = /[1234567890]/g;
 var digitsAndSemicolon = /[1234567890;]/g;
 var digitsAndAsterisk = /[1234567890\\*]/g;
 var digitsAndSlash =/[1234567890/]/g;
+var PROJECT_ID_FIX = "1";
 
 function restrictCharacters(myfield, e, restrictionType) {
     if (!e) var e = window.event;
@@ -59,6 +62,44 @@ skyApp.directive('format', ['$filter', function ($filter) {
         }
     };
 }]);
+
+skyApp.filter('secondsToDate', function() {
+    return function(secs) {
+        var t = new Date(1970, 0, 1); // Epoch
+        t.setSeconds(secs);
+        return t;
+    }
+});
+
+//create service like depencency
+//function generate page count data showing
+skyApp.factory('genPageShowing', function() {
+    return function(page) {
+        let pageShowing = {from: 1, to: 10};
+        if (!page.items || page.items.length === 0) pageShowing = {from: 0, to: 0};
+        else {
+            const from = (page.pageNumber - 1) * Number(page.numberPerPage) + 1;
+            const to = page.items.length < Number(page.numberPerPage)
+                ? from + page.items.length - 1
+                : page.pageNumber * Number(page.numberPerPage);
+            pageShowing.from = from;
+            pageShowing.to = to;
+        }
+        return pageShowing;
+    }
+});
+
+skyApp.factory('isNotEmpty', function() {
+    return function(str) {
+        return isNotEmpty(str);
+    }
+});
+
+function secondsToDate(secs) {
+    var t = new Date(1970, 0, 1); // Epoch
+    t.setSeconds(secs);
+    return t;
+}
 
 /*KHU VỰC PHÂN TRANG JAVASCRIPT*/
 var page={items:"",rowCount:0,numberPerPage:'10',pageNumber:1,pageList:[],pageCount:0};
@@ -314,6 +355,15 @@ function ictTimeToString(){
 
 }
 
+function convertJsonDateToDateTime(date) {
+    debugger;
+    var parsedDate = new Date(parseInt(date.substr(6)));
+    var newDate = new Date(parsedDate);
+    var month = ('0' + (newDate.getMonth())).slice(-2);
+    var day = ('0' + newDate.getDate()).slice(-2);
+    var year = newDate.getFullYear();
+    return new Date(year, month, day)
+}
 
 //convert Date() to format DD/MM/YYYY
 function dateFormatToDDMMYYYY(date) {

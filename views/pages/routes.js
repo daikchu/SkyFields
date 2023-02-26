@@ -20,7 +20,8 @@ module.exports = {
       jobCreateTemplate: "/" + project + "/admin/settings/job/create-template",
       taskTemplates: "/" + project + "/admin/settings/tasks/templates",
       taskTemplate: "/" + project + "/admin/settings/task/template",
-      taskCreateTemplate: "/" + project + "/admin/settings/task/create-template"
+      taskCreateTemplate: "/" + project + "/admin/settings/task/create-template",
+      projects: "/" + project + "/admin/projects",
     },
     employee: {
       dashboard: "/" + project + "/employee/dashboard"

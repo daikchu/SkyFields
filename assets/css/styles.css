@@ -59,3 +59,14 @@ tr.view_tasks .task-wrapper {
 *.off {
   display: none;
 }
+
+.spinner-loading {
+  margin-top: 20%;
+}
+.spinner-loading-popup {
+  margin-left: 46%;
+}
+
+.error-message {
+  color: #ff0000c7;
+}

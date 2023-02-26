@@ -1,4 +1,6 @@
 module.exports = {
+    API_PREFIX: "/api/v1",
+    ROLE_ADMIN: "admin",
     /*KHU VỰC PHÂN TRANG JAVASCRIPT*/
     page: {items: [], rowCount: 0, numberPerPage: '10', pageNumber: 1, pageList: [], pageCount: 0},
     /*load tong trang va danh sach trang*/
@@ -31,5 +33,6 @@ module.exports = {
         console.log('page list = ',pages);
         return pages;
     }
+
 
 };
