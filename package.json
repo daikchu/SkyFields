@@ -1,35 +1,51 @@
 {
-  "name": "nodejs",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "skyfields-app",
+  "version": "0.1.0",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.8",
-    "express": "^4.18.1",
-    "express-ejs-layouts": "^2.5.1",
-    "express-session": "^1.17.3",
-    "firebase": "^9.15.0",
-    "firebase-admin": "^11.5.0",
-    "firebase-functions": "^4.2.0",
-    "jsdom": "^20.0.0",
-    "moment": "^2.29.4",
-    "mysql": "^2.18.1",
-    "node-fetch": "^2.6.1",
-    "serve-static": "^1.15.0",
-    "socket.io": "^4.5.1",
-    "ws": "^8.8.1"
+    "@popperjs/core": "^2.11.6",
+    "axios": "^1.3.4",
+    "bootstrap": "^5.2.3",
+    "core-js": "^3.8.3",
+    "firebase": "^9.17.1",
+    "vue": "^2.6.12",
+    "vue-router": "^3.5.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "@babel/core": "^7.12.16",
+    "@babel/eslint-parser": "^7.12.16",
+    "@vue/cli-plugin-babel": "~5.0.0",
+    "@vue/cli-service": "~5.0.0",
+    "eslint": "^6.8.0",
+    "eslint-plugin-html": "6.1.1",
+    "eslint-plugin-import": "2.22.1",
+    "eslint-plugin-standard": "4.1.0",
+    "eslint-plugin-vue": "^6.2.2",
+    "vue-notification": "1.3.12"
   },
-  "optionalDependencies": {
-    "bufferutil": "^4.0.6",
-    "utf-8-validate": "^5.0.9"
-  }
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/vue3-essential",
+      "eslint:recommended"
+    ],
+    "parserOptions": {
+      "parser": "@babel/eslint-parser"
+    },
+    "rules": {}
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ]
 }
